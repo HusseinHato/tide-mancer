@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal player_dead
+
 @export var speed: float = 300.0
 @export var acceleration: float = 900.0
 @export var friction: float = 1200.0
@@ -26,7 +28,7 @@ func _ready() -> void:
 	if has_node("StatusController"):
 		var controller: StatusController = get_node("StatusController")
 		#controller.apply_effect(poison_effect)
-		controller.apply_effect(haste_effect)
+		#controller.apply_effect(haste_effect)
 		#controller.apply_effect(regen_effect)
 		#controller.apply_effect(fire_rate_effect)
 
@@ -60,7 +62,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func died() -> void:
-	print("You're dead")
+	player_dead.emit()
 	queue_free()
 
 func switch_weapon() -> void:

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Fire_Rate" load_steps=3 format=3 uid="uid://n6su2kryhk63"]
+
+[ext_resource type="Texture2D" uid="uid://c0k0gva5o3jrc" path="res://texture/attack_speed.png" id="1_7k5bx"]
+[ext_resource type="Script" uid="uid://cfnnyfnnauv1p" path="res://resource/upgrades/upgrade_fire_rate.gd" id="1_xr63c"]
+
+[resource]
+script = ExtResource("1_xr63c")
+id = &"fire_rate_upgrade"
+name = "Fire Rate Upgrade"
+description = "Increase Your Fire Rate by 0.8 Points"
+icon = ExtResource("1_7k5bx")
+max_level = 6
+metadata/_custom_type_script = "uid://cfnnyfnnauv1p"

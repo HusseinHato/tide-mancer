@@ -63,7 +63,9 @@ func _spawn_wave(count: int) -> void:
 		if cfg == null or cfg.scene == null:
 			continue
 		
-		var enemy := cfg.scene.instantiate()
+		var enemy := cfg.scene.instantiate() as Enemy
+		if enemy.has_method("init_with_time"):
+			enemy.init_with_time(_elapsed)
 		if enemy is Node2D:
 			enemy.global_position = _random_spawn_position()
 		else:

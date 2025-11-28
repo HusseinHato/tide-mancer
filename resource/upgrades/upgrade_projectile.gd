@@ -1,5 +1,5 @@
 extends UpgradeData
-class_name Upgrade_Projectile
+class_name Upgrade_Projectile_Count
 
 @export var projectile_per_level: int = 1
 

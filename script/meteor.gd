@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_node("Stats"):
 		var target_stats: Stats = area.get_parent().get_node("Stats")
-		target_stats.take_damage(damage, "skill")
+		target_stats.take_damage(damage, "normal")
 	queue_free()
 
 func _on_timer_timeout() -> void:

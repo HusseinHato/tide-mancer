@@ -3,7 +3,9 @@ class_name Stats
 signal health_depleted
 signal health_changed(current_health: float, max_health: float)
 
-const FLOATING_TEXT_SCENE = preload("uid://db23xusumj27x")
+const FLOATING_TEXT_SCENE: PackedScene = preload("uid://db23xusumj27x")
+const CRITICAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://ccy03g0aptbgt")
+const PLAYER_FLOATING_TEXT_SCENE: PackedScene = preload("uid://dinnlfbshpkyp")
 
 @export var base_max_health: float = 100.0
 @export var base_defense: float = 10.0
@@ -29,6 +31,8 @@ var bonus_crit_dmg: float = 0.0
 var bonus_projectile_speed: float = 0.0
 var bonus_fire_rate: float = 0.0
 var bonus_projectile_count: int = 0
+var bonus_piercing_count: int = 0
+var bonus_projectile_size: float = 1.0
 
 # Multipliers (usually from temporary effects)
 var attack_multiplier: float = 1.0
@@ -68,6 +72,12 @@ func get_fire_rate() -> float:
 func get_projectile_count() -> int:
 	return max(0, bonus_projectile_count)
 
+func get_piercing_count() -> int:
+	return max(0, bonus_piercing_count)
+
+func get_projectile_size() -> float:
+	return max(1.0, bonus_projectile_size)
+
 func _ready() -> void:
 	health = get_max_health()
 
@@ -96,9 +106,17 @@ func take_damage(raw_damage: float, type: String) -> void:
 	print("Took %.1f dmg (hp: %.1f/%.1f)" % [dmg, health, get_max_health()])
 	health_changed.emit(health, get_max_health())
 	
-	var text_instance = FLOATING_TEXT_SCENE.instantiate() as Label
-	var formatted_text = "%.1f" % dmg
+	var text_instance: Label
+	var formatted_text: String = "%d" % dmg
+	if owner is Player:
+		text_instance = PLAYER_FLOATING_TEXT_SCENE.instantiate()
+	elif type == "critical":
+		text_instance = CRITICAL_FLOATING_TEXT_SCENE.instantiate()
+		formatted_text = "%d!!" % dmg
+	else:
+		text_instance = FLOATING_TEXT_SCENE.instantiate()
 	text_instance.text = formatted_text
+	
 	text_instance.global_position = get_parent().global_position
 	get_tree().current_scene.add_child.call_deferred(text_instance)
 	

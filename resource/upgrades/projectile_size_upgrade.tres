@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Projectile_Size" load_steps=3 format=3 uid="uid://b0i338gyu3xnt"]
+
+[ext_resource type="Texture2D" uid="uid://d376bosjsti6s" path="res://texture/upgrade_projectile_size.png" id="1_2ifkr"]
+[ext_resource type="Script" uid="uid://7oyuugaxh2e2" path="res://resource/upgrades/upgrade_projectile_size.gd" id="1_yi8ra"]
+
+[resource]
+script = ExtResource("1_yi8ra")
+id = &"projectile_size_upgrade"
+name = "Bigger Bullet"
+description = "Upgrade your projectile size by 25%"
+icon = ExtResource("1_2ifkr")
+max_level = 6
+metadata/_custom_type_script = "uid://7oyuugaxh2e2"

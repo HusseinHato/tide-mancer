@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://becwtdpvqaxov"]
+
+[ext_resource type="Script" uid="uid://l0tgt4kegnko" path="res://script/game_over.gd" id="1_mxr41"]
+[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="2_bc2bx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pabp"]
+content_margin_left = 4.0
+content_margin_top = 8.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.44291073, 0.4429108, 0.4429106, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooyig"]
+content_margin_left = 4.0
+content_margin_top = 8.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_mxr41")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Background" type="ColorRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bc2bx")
+text = "You WIn!!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bc2bx")
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6pabp")
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_bc2bx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ooyig")
+text = "Main Menu"

@@ -56,7 +56,7 @@ func shoot() -> void:
 		_spawn_bullet(direction, spawn_pos, i)
 
 func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_index: int) -> void:
-	var bullet = weapon_data.bullet_scene.instantiate()
+	var bullet = weapon_data.bullet_scene.instantiate() as Bullet
 	
 	var spread_offset: float = 0.0
 	if weapon_data.bullets_per_shot > 1:
@@ -73,17 +73,19 @@ func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_inde
 		final_damage *= stats.get_attack() / stats.base_attack
 		
 		if randf() < stats.get_crit_chance():
+			bullet.critical_hit = true
 			final_damage *= stats.get_crit_dmg()
-			#print("CRITICAL HIT!")
 	
 	var final_speed := weapon_data.projectile_speed
 	if stats:
 		final_speed = stats.get_projectile_speed() + weapon_data.projectile_speed
 	
+	var final_piercing_count = weapon_data.piercing_count + stats.get_piercing_count()
+	
 	bullet.global_position = spawn_position
 	
 	if bullet.has_method("initialize"):
-		bullet.initialize(final_direction, final_speed, final_damage)
+		bullet.initialize(final_direction, final_speed, final_damage, final_piercing_count, stats.get_projectile_size())
 	else:
 		if "direction" in bullet:
 			bullet.direction = final_direction

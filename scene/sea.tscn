@@ -1,11 +1,14 @@
-[gd_scene load_steps=30 format=4 uid="uid://bhlp3r8w6ch5f"]
+[gd_scene load_steps=39 format=4 uid="uid://bhlp3r8w6ch5f"]
 
 [ext_resource type="PackedScene" uid="uid://8qs7ip8igu6" path="res://scene/player.tscn" id="1_amuwk"]
+[ext_resource type="Script" uid="uid://da3lhmji2gndk" path="res://script/sea_stage.gd" id="1_p26xr"]
 [ext_resource type="Texture2D" uid="uid://20x6fnv0x030" path="res://texture/sea01.png" id="1_usqvo"]
 [ext_resource type="Texture2D" uid="uid://6da1k0dlcxfe" path="res://texture/border_rock-Sheet.png" id="2_gjc0r"]
+[ext_resource type="Texture2D" uid="uid://derfcyjv4iuuh" path="res://texture/poison_icon.png" id="4_defi4"]
 [ext_resource type="Texture2D" uid="uid://bwbaya3c1c7jn" path="res://texture/health_under.png" id="4_qunxv"]
 [ext_resource type="Script" uid="uid://0d8jmhsspxfm" path="res://script/health_ui.gd" id="4_rrha4"]
 [ext_resource type="Texture2D" uid="uid://dad66j0be77cn" path="res://texture/health_overr.png" id="5_3vh3h"]
+[ext_resource type="Script" uid="uid://2a24cxhbp2e0" path="res://resource/debuffs/poison_effect.gd" id="5_tgnkq"]
 [ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="6_ns8sg"]
 [ext_resource type="Script" uid="uid://bvtrn326u7j11" path="res://script/experience_ui.gd" id="7_28ibn"]
 [ext_resource type="Texture2D" uid="uid://s3w65r7vy2pf" path="res://texture/exp_bar_under.png" id="7_simt7"]
@@ -23,8 +26,13 @@
 [ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="16_uvbp1"]
 [ext_resource type="Resource" uid="uid://dpgiqquw03n12" path="res://resource/enemies/green_sea_snake.tres" id="17_g4t8o"]
 [ext_resource type="Resource" uid="uid://dfef21nrq7mtb" path="res://resource/enemies/green_dunkleosteus.tres" id="18_uvbp1"]
+[ext_resource type="Resource" uid="uid://n6su2kryhk63" path="res://resource/upgrades/fire_rate_upgrade.tres" id="22_myvl3"]
+[ext_resource type="Resource" uid="uid://b0i338gyu3xnt" path="res://resource/upgrades/projectile_size_upgrade.tres" id="23_2lall"]
 [ext_resource type="Resource" uid="uid://cx7esdryja5uj" path="res://resource/enemies/pink_goo.tres" id="24_diltv"]
 [ext_resource type="Resource" uid="uid://cxctwe1a2d5hm" path="res://resource/enemies/blue_ring_octopus.tres" id="24_we7s2"]
+[ext_resource type="Resource" uid="uid://di6857j2tg40p" path="res://resource/enemies/poisonus_bat.tres" id="26_fc43f"]
+[ext_resource type="Resource" uid="uid://dawa0sl8qhsen" path="res://resource/enemies/poisonus_flying_octopus.tres" id="29_p26xr"]
+[ext_resource type="PackedScene" uid="uid://becwtdpvqaxov" path="res://scene/game_over.tscn" id="31_myvl3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_usqvo"]
 texture = ExtResource("1_usqvo")
@@ -54,7 +62,19 @@ physics_layer_0/collision_layer = 32
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_wc2tx")
 
+[sub_resource type="Resource" id="Resource_myvl3"]
+resource_local_to_scene = true
+script = ExtResource("5_tgnkq")
+damage_per_tick = 3.0
+id = &"poison"
+icon = ExtResource("4_defi4")
+duration = 5.0
+tick_interval = 1.0
+max_stacks = 1
+metadata/_custom_type_script = "uid://2a24cxhbp2e0"
+
 [node name="Sea" type="Node2D"]
+script = ExtResource("1_p26xr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(80, 197)
@@ -79,6 +99,8 @@ tile_map_data = PackedByteArray("AADC/xkAAAAAAAAAAADD/xkAAAAAAAAAAADE/xkAAAAAAAA
 tile_set = SubResource("TileSet_we7s2")
 
 [node name="Player" parent="Entities" instance=ExtResource("1_amuwk")]
+unique_name_in_owner = true
+poison_effect = SubResource("Resource_myvl3")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -160,7 +182,7 @@ grow_vertical = 0
 theme = ExtResource("6_ns8sg")
 text = "Lv. 1"
 
-[node name="TimerRelated" type="Control" parent="CanvasLayer"]
+[node name="TimerRelated" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -170,6 +192,7 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 script = ExtResource("11_diltv")
+player = NodePath("../../Entities/Player")
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer/TimerRelated"]
 layout_mode = 0
@@ -184,7 +207,7 @@ script = ExtResource("8_1y8c8")
 
 [node name="UpgradeManager" type="Node" parent="." node_paths=PackedStringArray("upgrade_ui", "player")]
 script = ExtResource("9_psc0b")
-available_upgrades = Array[ExtResource("10_6823s")]([ExtResource("11_r0r4p"), ExtResource("12_1f8tb"), ExtResource("13_a77dk"), ExtResource("14_33lt2")])
+available_upgrades = Array[ExtResource("10_6823s")]([ExtResource("11_r0r4p"), ExtResource("12_1f8tb"), ExtResource("13_a77dk"), ExtResource("14_33lt2"), ExtResource("22_myvl3"), ExtResource("23_2lall")])
 upgrade_ui = NodePath("../UpgradeUI")
 player = NodePath("../Entities/Player")
 
@@ -193,10 +216,13 @@ visible = false
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_66x4v")]
 player = NodePath("../Entities/Player")
-enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv")])
+enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv"), ExtResource("26_fc43f"), ExtResource("29_p26xr")])
 min_spawn_interval = 1.0
 spawn_interval_decay_per_sec = 0.01
 base_enemies_per_wave = 2
 max_enemies_per_wave = 6
 enemies_per_minute_growth = 1.25
 max_enemies_alive = 120
+
+[node name="GameOver" parent="." instance=ExtResource("31_myvl3")]
+unique_name_in_owner = true

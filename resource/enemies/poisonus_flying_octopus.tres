@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://dawa0sl8qhsen"]
+
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_to40n"]
+[ext_resource type="PackedScene" uid="uid://cqetwdc56o0eg" path="res://scene/enemy_ranged_poison.tscn" id="1_vik05"]
+
+[resource]
+script = ExtResource("1_to40n")
+scene = ExtResource("1_vik05")
+unlock_time = 300.0
+weight = 5.0
+metadata/_custom_type_script = "uid://c7xnvkxd2yajl"

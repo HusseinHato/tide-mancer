@@ -8,6 +8,7 @@ class_name Enemy
 @export var speed: float = 70.0
 @export var acceleration: float = 600.0
 @export var friction: float = 800.0
+@export var hp_per_minute: float = 40
 
 var player: Player
 var is_dying: bool = false
@@ -17,6 +18,11 @@ func _ready() -> void:
 	stats.health_depleted.connect(_die)
 	
 	_recalculate_stats()
+
+func init_with_time(elapsed: float) -> void:
+	var minutes: int = floor(elapsed / 60)
+	stats.bonus_max_health += hp_per_minute * minutes
+	stats.health = stats.get_max_health()
 
 func _recalculate_stats() -> void:
 	speed = stats.get_move_speed()

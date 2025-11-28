@@ -9,3 +9,4 @@ class_name WeponData
 @export var spred_deg: float = 0.0
 @export var projectile_speed: float = 400.0
 @export var weapon_sprite: Texture2D
+@export var piercing_count: int = 0

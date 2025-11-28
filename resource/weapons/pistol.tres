@@ -13,4 +13,5 @@ fire_rate = 0.1
 spred_deg = 10.0
 projectile_speed = 100.0
 weapon_sprite = ExtResource("3_x41xn")
+piercing_count = 1
 metadata/_custom_type_script = "uid://c6g84trqyp5yl"

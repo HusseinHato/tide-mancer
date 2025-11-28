@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Upgrade_Health" load_steps=3 format=3 uid="uid://1swibk2qyypr"]
 
 [ext_resource type="Texture2D" uid="uid://du8foplxktb60" path="res://texture/upgrade_max_health.png" id="1_1oktw"]
-[ext_resource type="Script" uid="uid://757bfco0340e" path="res://resource/upgrades/health_upgrade.gd" id="1_ocfrc"]
+[ext_resource type="Script" uid="uid://757bfco0340e" path="res://resource/upgrades/upgrade_health.gd" id="1_ocfrc"]
 
 [resource]
 script = ExtResource("1_ocfrc")

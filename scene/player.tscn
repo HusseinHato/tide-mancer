@@ -50,7 +50,8 @@ stats = NodePath("../Stats")
 icon_container = NodePath("../UI/HBoxContainer")
 
 [node name="Stats" parent="." instance=ExtResource("7_ml7e8")]
-base_crit_chance = 0.2
+base_crit_chance = 0.05
+base_crit_dmg = 1.25
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

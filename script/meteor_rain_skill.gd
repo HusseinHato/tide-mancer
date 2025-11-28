@@ -4,7 +4,7 @@ class_name MeteorRainSkill
 @export var meteor_scene: PackedScene
 @export var stats: Stats
 
-@export var damage_per_level: PackedFloat64Array = [10.0, 13.0, 16.0, 20.0]
+@export var damage_per_level: PackedFloat64Array = [10.0, 12.0, 14.0, 16.0]
 @export var meteors_per_burst_per_level: PackedInt32Array = [1, 2, 3, 4]
 @export var cooldown_per_level: PackedFloat64Array = [3.4, 2.6, 1.8, 1]
 
