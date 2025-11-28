@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Attack" load_steps=3 format=3 uid="uid://dq8bv5ycvljv6"]
+
+[ext_resource type="Script" uid="uid://cf6ii50vxa8ox" path="res://resource/upgrades/upgrade_attack.gd" id="1_8ahen"]
+[ext_resource type="Texture2D" uid="uid://dlc1tvh8vkn1" path="res://texture/attack_up.png" id="1_mcpfw"]
+
+[resource]
+script = ExtResource("1_8ahen")
+id = &"upgrade_attack"
+name = "Upgrade Attack"
+description = "Increase your attack damage by 10"
+icon = ExtResource("1_mcpfw")
+max_level = 7
+metadata/_custom_type_script = "uid://cf6ii50vxa8ox"

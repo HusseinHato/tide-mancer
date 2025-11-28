@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeponData" load_steps=4 format=3 uid="uid://cjrkfl6car2u4"]
+
+[ext_resource type="PackedScene" uid="uid://cijxs03ldvect" path="res://scene/bullet.tscn" id="1_4tbth"]
+[ext_resource type="Script" uid="uid://c6g84trqyp5yl" path="res://script/weapon_data.gd" id="1_546od"]
+[ext_resource type="Texture2D" uid="uid://dhwu12xvvrge" path="res://texture/shotgun.png" id="3_dctxx"]
+
+[resource]
+script = ExtResource("1_546od")
+name = "Shotgun"
+bullet_scene = ExtResource("1_4tbth")
+base_damage = 7.0
+fire_rate = 0.65
+bullets_per_shot = 3
+spred_deg = 13.0
+projectile_speed = 60.0
+weapon_sprite = ExtResource("3_dctxx")
+metadata/_custom_type_script = "uid://c6g84trqyp5yl"

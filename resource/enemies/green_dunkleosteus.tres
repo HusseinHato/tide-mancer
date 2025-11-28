@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://dfef21nrq7mtb"]
+
+[ext_resource type="PackedScene" uid="uid://cl01ala1vnfhm" path="res://scene/enemy_tank.tscn" id="1_c4lep"]
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_eix3y"]
+
+[resource]
+script = ExtResource("1_eix3y")
+scene = ExtResource("1_c4lep")
+unlock_time = 180.0
+weight = 5.0
+metadata/_custom_type_script = "uid://c7xnvkxd2yajl"

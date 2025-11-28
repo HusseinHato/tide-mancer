@@ -1,0 +1,135 @@
+[gd_scene load_steps=18 format=3 uid="uid://4fhrrwpufmuh"]
+
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_2xpu7"]
+[ext_resource type="Texture2D" uid="uid://d336my68vhxnm" path="res://texture/enemy-normal-Sheet.png" id="1_ak7lh"]
+[ext_resource type="PackedScene" uid="uid://cdidaf5xsujf3" path="res://scene/experience_gem.tscn" id="2_6glnu"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="3_cyfb2"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="4_2xpu7"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_xpuap"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_2vvbw"]
+[ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="8_qhl48"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x76ep"]
+atlas = ExtResource("1_ak7lh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyfb2"]
+atlas = ExtResource("1_ak7lh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xpu7"]
+atlas = ExtResource("1_ak7lh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6glnu"]
+atlas = ExtResource("1_ak7lh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpuap"]
+atlas = ExtResource("1_ak7lh")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2vvbw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x76ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyfb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xpu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6glnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpuap")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhl48"]
+radius = 18.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x76ep"]
+radius = 20.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jp0c6"]
+radius = 18.0
+height = 48.0
+
+[node name="EnemySnake" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
+collision_layer = 0
+script = ExtResource("1_2xpu7")
+stats = NodePath("Stats")
+item_drop = ExtResource("2_6glnu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.4, 1.4)
+sprite_frames = SubResource("SpriteFrames_2vvbw")
+animation = &"swimming"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qhl48")
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(-4, -2)
+shape = SubResource("CapsuleShape2D_x76ep")
+debug_color = Color(0.95755154, 2.5990605e-06, 0.5345746, 0.41960785)
+
+[node name="Stats" parent="." instance=ExtResource("3_cyfb2")]
+base_max_health = 15.0
+base_defense = 5.0
+base_attack = 5.0
+base_move_speed = 70.0
+base_projectile_speed = 0.0
+
+[node name="StatusController" parent="." node_paths=PackedStringArray("stats", "icon_container") instance=ExtResource("4_2xpu7")]
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -69.0
+offset_right = 20.0
+offset_bottom = -29.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_xpuap")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("6_2vvbw")
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_qhl48")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+shape = SubResource("CapsuleShape2D_jp0c6")
+debug_color = Color(0.96611387, 0, 0.48549867, 0.41960785)

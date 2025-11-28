@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_MeteorRain" load_steps=3 format=3 uid="uid://bql4igohg55bs"]
+
+[ext_resource type="Texture2D" uid="uid://dj2a5nvxrjr3g" path="res://texture/meteor.png" id="1_706b1"]
+[ext_resource type="Script" uid="uid://m3o5h8nre45y" path="res://resource/upgrades/meteor_upgrade.gd" id="1_b2icu"]
+
+[resource]
+script = ExtResource("1_b2icu")
+skill_node_path = NodePath("MeteorRainSKill")
+id = &"meteor_upgrade"
+name = "Raining Rocks"
+description = "Periodically calls down meteor that damage enemies"
+icon = ExtResource("1_706b1")
+max_level = 4
+metadata/_custom_type_script = "uid://m3o5h8nre45y"

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvc4cwd07totw"]
+
+[ext_resource type="Texture2D" uid="uid://cfj5b42r0d7c8" path="res://texture/meteor-Sheet.png" id="1_umjx8"]
+[ext_resource type="Script" uid="uid://ch5a7pgkujb4b" path="res://script/meteor.gd" id="1_xad4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xad4d"]
+atlas = ExtResource("1_umjx8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw5h2"]
+atlas = ExtResource("1_umjx8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sffqh"]
+atlas = ExtResource("1_umjx8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1r7y"]
+atlas = ExtResource("1_umjx8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbtm0"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xad4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sffqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1r7y")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ko37o"]
+radius = 10.666667
+
+[node name="Meteor" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_xad4d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_jbtm0")
+animation = &"falling"
+frame_progress = 0.22758587
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_ko37o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

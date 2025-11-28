@@ -1,0 +1,107 @@
+[gd_scene load_steps=19 format=3 uid="uid://8qs7ip8igu6"]
+
+[ext_resource type="Script" uid="uid://buxemor33r8u3" path="res://script/player.gd" id="1_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://t8aef84ma5f4" path="res://texture/shrak.png" id="2_fvtld"]
+[ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="2_s4jxa"]
+[ext_resource type="Resource" uid="uid://dq51trxj7yimw" path="res://resource/debuffs/haste.tres" id="3_oh5ij"]
+[ext_resource type="Resource" uid="uid://pc0nb2xg0n88" path="res://resource/debuffs/regen.tres" id="4_hp4bs"]
+[ext_resource type="Resource" uid="uid://b2j36auo23yxm" path="res://resource/debuffs/fire_rate.tres" id="5_dk1vr"]
+[ext_resource type="Resource" uid="uid://cjrkfl6car2u4" path="res://resource/weapons/shotgun.tres" id="6_ihjo1"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="6_ml7e8"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="7_ml7e8"]
+[ext_resource type="Script" uid="uid://y4lvr6bw73vi" path="res://script/weapon.gd" id="8_2fvbb"]
+[ext_resource type="Texture2D" uid="uid://ky20l50feq3h" path="res://texture/pistol.png" id="8_g2vtq"]
+[ext_resource type="Resource" uid="uid://dach7tfpq5i00" path="res://resource/weapons/pistol.tres" id="9_ml7e8"]
+[ext_resource type="Script" uid="uid://bserhnjupv34s" path="res://script/magnet_area.gd" id="13_34jf3"]
+[ext_resource type="PackedScene" uid="uid://dlmsxjal4hguy" path="res://scene/meteor_rain_skill.tscn" id="14_j4wxg"]
+[ext_resource type="PackedScene" uid="uid://bvc4cwd07totw" path="res://scene/meteor.tscn" id="14_u7b46"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ct4mp"]
+radius = 11.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp4bs"]
+radius = 11.0
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk1vr"]
+radius = 69.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon") groups=["player"]]
+collision_layer = 2
+collision_mask = 33
+script = ExtResource("1_hjaqi")
+weapon = NodePath("Weapon")
+poison_effect = ExtResource("2_s4jxa")
+haste_effect = ExtResource("3_oh5ij")
+regen_effect = ExtResource("4_hp4bs")
+fire_rate_effect = ExtResource("5_dk1vr")
+pistol_weapon = ExtResource("9_ml7e8")
+shotgun_weapon = ExtResource("6_ihjo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvtld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ct4mp")
+
+[node name="StatusController" parent="." node_paths=PackedStringArray("stats", "icon_container") instance=ExtResource("6_ml7e8")]
+stats = NodePath("../Stats")
+icon_container = NodePath("../UI/HBoxContainer")
+
+[node name="Stats" parent="." instance=ExtResource("7_ml7e8")]
+base_crit_chance = 0.2
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.2750001
+anchor_bottom = -1.2750001
+offset_left = -19.0
+offset_top = -19.999996
+offset_right = 21.0
+offset_bottom = 20.000004
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+shape = SubResource("CapsuleShape2D_hp4bs")
+debug_color = Color(0.9522925, 5.7756904e-07, 0.5618319, 0.41960785)
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("8_2fvbb")
+weapon_data = ExtResource("9_ml7e8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+position = Vector2(0, -9)
+texture = ExtResource("8_g2vtq")
+
+[node name="Muzzle" type="Marker2D" parent="Weapon/Sprite2D"]
+position = Vector2(4, 0)
+
+[node name="ShootTimer" type="Timer" parent="Weapon"]
+one_shot = true
+autostart = true
+
+[node name="MagnetArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("13_34jf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea"]
+shape = SubResource("CircleShape2D_dk1vr")
+debug_color = Color(0, 0.6345051, 0.43192282, 0.41960785)
+
+[node name="MeteorRainSKill" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("14_j4wxg")]
+meteor_scene = ExtResource("14_u7b46")
+stats = NodePath("../Stats")

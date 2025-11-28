@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://8qs7ip8igu6"]
+
+[ext_resource type="Script" uid="uid://buxemor33r8u3" path="res://script/player.gd" id="1_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://t8aef84ma5f4" path="res://texture/shrak.png" id="2_fvtld"]
+[ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="2_s4jxa"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="3_fvtld"]
+[ext_resource type="Resource" uid="uid://dq51trxj7yimw" path="res://resource/debuffs/haste.tres" id="3_oh5ij"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="4_ct4mp"]
+[ext_resource type="Resource" uid="uid://pc0nb2xg0n88" path="res://resource/debuffs/regen.tres" id="4_hp4bs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ct4mp"]
+radius = 11.0
+height = 40.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hjaqi")
+poison_effect = ExtResource("2_s4jxa")
+haste_effect = ExtResource("3_oh5ij")
+regen_effect = ExtResource("4_hp4bs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvtld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ct4mp")
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("3_fvtld")
+stats = NodePath("../Stats")
+icon_container = NodePath("../UI/HBoxContainer")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("4_ct4mp")
+base_max_health = 200.0
+base_evasion = 0.5
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.2750001
+anchor_bottom = -1.2750001
+offset_left = -19.0
+offset_top = -19.999996
+offset_right = 21.0
+offset_bottom = 20.000004
+grow_horizontal = 2
+grow_vertical = 2

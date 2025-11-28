@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HasteEffect" load_steps=3 format=3 uid="uid://dq51trxj7yimw"]
+
+[ext_resource type="Script" uid="uid://d2h856k7shmqh" path="res://resource/debuffs/haste_effect.gd" id="1_r3g8v"]
+[ext_resource type="Texture2D" uid="uid://sknu68wk78wo" path="res://texture/haste.png" id="1_s0ubp"]
+
+[resource]
+script = ExtResource("1_r3g8v")
+id = &"haste"
+is_buff = true
+icon = ExtResource("1_s0ubp")
+duration = 99.0
+tick_interval = 999999.0
+max_stacks = 5
+metadata/_custom_type_script = "uid://d2h856k7shmqh"

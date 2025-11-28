@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RegenEffect" load_steps=3 format=3 uid="uid://pc0nb2xg0n88"]
+
+[ext_resource type="Script" uid="uid://0vkedymlifm1" path="res://resource/debuffs/regen_effect.gd" id="1_cdfwf"]
+[ext_resource type="Texture2D" uid="uid://cy4oqgs4xysnk" path="res://texture/regen.png" id="1_tarjx"]
+
+[resource]
+script = ExtResource("1_cdfwf")
+id = &"regen"
+is_buff = true
+icon = ExtResource("1_tarjx")
+duration = 8.0
+tick_interval = 1.0
+max_stacks = 1
+metadata/_custom_type_script = "uid://0vkedymlifm1"

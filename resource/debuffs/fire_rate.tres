@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FireRateEffect" load_steps=3 format=3 uid="uid://b2j36auo23yxm"]
+
+[ext_resource type="Script" uid="uid://di22jx5xi1421" path="res://resource/debuffs/fire_rate_effect.gd" id="1_1y4lx"]
+[ext_resource type="Texture2D" uid="uid://c0k0gva5o3jrc" path="res://texture/attack_speed.png" id="1_d4h75"]
+
+[resource]
+script = ExtResource("1_1y4lx")
+fire_rate_delta = 6.0
+id = &"fire_rate"
+is_buff = true
+icon = ExtResource("1_d4h75")
+duration = 999.0
+tick_interval = 999999.0
+max_stacks = 1
+metadata/_custom_type_script = "uid://di22jx5xi1421"

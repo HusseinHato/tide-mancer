@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhymhrpb7is6x"]
+
+[ext_resource type="Script" uid="uid://rm58bjuhqhr" path="res://script/upgrade_ui.gd" id="1_6obqg"]
+[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="2_3bp0p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6obqg"]
+bg_color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+
+[node name="UpgradeUI" type="CanvasLayer"]
+script = ExtResource("1_6obqg")
+
+[node name="PanelRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="PanelRoot/CenterContainer"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6obqg")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelRoot/CenterContainer/Panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelRoot/CenterContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelRoot/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelRoot/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3bp0p")
+text = "Choose an Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelRoot/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionsContainer" type="HBoxContainer" parent="PanelRoot/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

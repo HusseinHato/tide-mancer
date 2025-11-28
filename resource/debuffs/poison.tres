@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PoisonEffect" load_steps=3 format=3 uid="uid://bm0g75ucsfw6t"]
+
+[ext_resource type="Script" uid="uid://2a24cxhbp2e0" path="res://resource/debuffs/poison_effect.gd" id="1_cko6w"]
+[ext_resource type="Texture2D" uid="uid://derfcyjv4iuuh" path="res://texture/poison_icon.png" id="1_iwq5a"]
+
+[resource]
+script = ExtResource("1_cko6w")
+damage_per_tick = 14.0
+id = &"poison"
+icon = ExtResource("1_iwq5a")
+duration = 10.0
+tick_interval = 1.0
+max_stacks = 5
+metadata/_custom_type_script = "uid://2a24cxhbp2e0"

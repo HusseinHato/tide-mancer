@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Health" load_steps=3 format=3 uid="uid://1swibk2qyypr"]
+
+[ext_resource type="Texture2D" uid="uid://du8foplxktb60" path="res://texture/upgrade_max_health.png" id="1_1oktw"]
+[ext_resource type="Script" uid="uid://757bfco0340e" path="res://resource/upgrades/health_upgrade.gd" id="1_ocfrc"]
+
+[resource]
+script = ExtResource("1_ocfrc")
+id = &"health_upgrade"
+name = "Health Upgrade"
+description = "Increase your max health by 25"
+icon = ExtResource("1_1oktw")
+max_level = 7
+metadata/_custom_type_script = "uid://757bfco0340e"

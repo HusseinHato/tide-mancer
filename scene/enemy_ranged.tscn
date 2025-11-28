@@ -1,0 +1,156 @@
+[gd_scene load_steps=21 format=3 uid="uid://8ntpxl3kj03j"]
+
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_tbamt"]
+[ext_resource type="Texture2D" uid="uid://bplhgbsrcmpkd" path="res://texture/enemy_shoot-Sheet.png" id="2_r6hsb"]
+[ext_resource type="PackedScene" uid="uid://ca84klelguglu" path="res://scene/state_machine.tscn" id="3_r6hsb"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="4_ipjqk"]
+[ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="5_erxfx"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="5_ipjqk"]
+[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/enemy_bullet.tscn" id="6_0fmoi"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="8_i3qmn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erxfx"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fmoi"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3qmn"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6jhe"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rg2h"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5na0d"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvcjm"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke52s"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl65c"]
+atlas = ExtResource("2_r6hsb")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6e4f5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erxfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fmoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3qmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6jhe")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rg2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5na0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvcjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke52s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl65c")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mj8ag"]
+radius = 17.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0fmoi"]
+radius = 18.0
+height = 40.0
+
+[node name="EnemyRanged" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
+collision_layer = 0
+script = ExtResource("1_tbamt")
+stats = NodePath("Stats")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6e4f5")
+animation = &"swimming"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mj8ag")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_r6hsb")]
+initial_state = NodePath("StateChase")
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("4_ipjqk")
+stop_distance = 300.0
+next_state_on_stop = "StateShoot"
+
+[node name="StateShoot" type="Node" parent="StateMachine"]
+script = ExtResource("5_erxfx")
+projectile_scene = ExtResource("6_0fmoi")
+resume_chase_distance = 300.0
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("5_ipjqk")
+base_max_health = 15.0
+base_defense = 5.0
+base_attack = 5.0
+base_move_speed = 50.0
+base_projectile_speed = 175.0
+base_fire_rate = 0.75
+metadata/_custom_type_script = "uid://5voq86b0plfn"
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(0, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0fmoi")
+debug_color = Color(0.9447193, 0.12248061, 0.50797135, 0.41960785)
+
+[node name="StatusController" parent="." node_paths=PackedStringArray("stats", "icon_container") instance=ExtResource("8_i3qmn")]
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

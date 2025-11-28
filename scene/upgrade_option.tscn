@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://rcp074axgpew"]
+
+[ext_resource type="Script" uid="uid://5jkka65h0a0a" path="res://script/upgrade_option.gd" id="1_ww27w"]
+[ext_resource type="Texture2D" uid="uid://dlc1tvh8vkn1" path="res://texture/attack_up.png" id="2_a3cy1"]
+[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="3_ieytw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xj1yb"]
+bg_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.62967473, 0.62967485, 0.62967455, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ieytw"]
+bg_color = Color(0.36282945, 0.36282948, 0.36282933, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cru5"]
+bg_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
+
+[node name="UpgradeOption" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xj1yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ieytw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3cru5")
+script = ExtResource("1_ww27w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 300.0
+grow_horizontal = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="IconRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("2_a3cy1")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("3_ieytw")
+theme_override_font_sizes/font_size = 13
+text = "Add Projectile Count"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_ieytw")
+theme_override_font_sizes/font_size = 10
+text = "Add Attack By 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

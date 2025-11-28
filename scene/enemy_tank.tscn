@@ -1,0 +1,139 @@
+[gd_scene load_steps=17 format=3 uid="uid://cl01ala1vnfhm"]
+
+[ext_resource type="Texture2D" uid="uid://c5kpvovgoajir" path="res://texture/enemy_tank-Sheet.png" id="1_bh0iw"]
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_kdhjb"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="2_0fo8p"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="3_q464c"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="4_q464c"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="5_kdhjb"]
+[ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_fhylh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fo8p"]
+atlas = ExtResource("1_bh0iw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q464c"]
+atlas = ExtResource("1_bh0iw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdhjb"]
+atlas = ExtResource("1_bh0iw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhylh"]
+atlas = ExtResource("1_bh0iw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5psyb"]
+atlas = ExtResource("1_bh0iw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evyyv"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fo8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q464c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdhjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhylh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5psyb")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aml55"]
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4nns"]
+radius = 11.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdhjb"]
+radius = 19.0
+height = 86.0
+
+[node name="EnemyTank" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
+collision_layer = 0
+script = ExtResource("1_kdhjb")
+stats = NodePath("Stats")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_evyyv")
+animation = &"swimming"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_aml55")
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(0, 3)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_u4nns")
+debug_color = Color(0.9572193, 0, 0.5363568, 0.41960785)
+
+[node name="Stats" parent="." instance=ExtResource("2_0fo8p")]
+base_max_health = 300.0
+base_defense = 60.0
+base_attack = 15.0
+base_move_speed = 35.0
+base_projectile_speed = 0.0
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("3_q464c")
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+metadata/_custom_type_script = "uid://dgkq2qdinr5ur"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -50.0
+offset_right = 22.0
+offset_bottom = -10.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_q464c")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("5_kdhjb")
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_fhylh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+position = Vector2(-4, 7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_kdhjb")

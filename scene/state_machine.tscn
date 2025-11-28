@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca84klelguglu"]
+
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="1_vopib"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_vopib")
