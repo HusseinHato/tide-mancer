@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_1y4lx")
-fire_rate_delta = 6.0
+fire_rate_delta = 2.0
 id = &"fire_rate"
 is_buff = true
 icon = ExtResource("1_d4h75")
-duration = 999.0
+duration = 7.0
 tick_interval = 999999.0
 max_stacks = 1
 metadata/_custom_type_script = "uid://di22jx5xi1421"

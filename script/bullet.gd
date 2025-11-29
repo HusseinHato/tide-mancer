@@ -1,6 +1,8 @@
 extends Area2D
 class_name Bullet
 
+@onready var timer: Timer = $Timer
+
 var direction: Vector2 =Vector2.RIGHT
 var speed: float = 400.0
 var damage: float = 10.0
@@ -13,8 +15,8 @@ var critical_hit: bool = false
 func _ready() -> void:
 	area_entered.connect(_on_area_entered) 
 	
-	var timer := get_tree().create_timer(lifetime)
 	timer.timeout.connect(queue_free)
+	timer.start(lifetime)
 
 func initialize(dir: Vector2, spd: float, dmg: float, piercing_count: int, proj_size: float) -> void:
 	direction = dir.normalized()

@@ -1,11 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://8qs7ip8igu6"]
+[gd_scene load_steps=15 format=3 uid="uid://8qs7ip8igu6"]
 
 [ext_resource type="Script" uid="uid://buxemor33r8u3" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://t8aef84ma5f4" path="res://texture/shrak.png" id="2_fvtld"]
-[ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="2_s4jxa"]
-[ext_resource type="Resource" uid="uid://dq51trxj7yimw" path="res://resource/debuffs/haste.tres" id="3_oh5ij"]
-[ext_resource type="Resource" uid="uid://pc0nb2xg0n88" path="res://resource/debuffs/regen.tres" id="4_hp4bs"]
-[ext_resource type="Resource" uid="uid://b2j36auo23yxm" path="res://resource/debuffs/fire_rate.tres" id="5_dk1vr"]
 [ext_resource type="Resource" uid="uid://cjrkfl6car2u4" path="res://resource/weapons/shotgun.tres" id="6_ihjo1"]
 [ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="6_ml7e8"]
 [ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="7_ml7e8"]
@@ -28,14 +24,10 @@ height = 38.0
 radius = 69.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon") groups=["player"]]
-collision_layer = 2
-collision_mask = 33
+collision_layer = 3
+collision_mask = 32
 script = ExtResource("1_hjaqi")
 weapon = NodePath("Weapon")
-poison_effect = ExtResource("2_s4jxa")
-haste_effect = ExtResource("3_oh5ij")
-regen_effect = ExtResource("4_hp4bs")
-fire_rate_effect = ExtResource("5_dk1vr")
 pistol_weapon = ExtResource("9_ml7e8")
 shotgun_weapon = ExtResource("6_ihjo1")
 

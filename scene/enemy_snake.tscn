@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_2xpu7"]
 [ext_resource type="Texture2D" uid="uid://d336my68vhxnm" path="res://texture/enemy-normal-Sheet.png" id="1_ak7lh"]
-[ext_resource type="PackedScene" uid="uid://cdidaf5xsujf3" path="res://scene/experience_gem.tscn" id="2_6glnu"]
 [ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="3_cyfb2"]
 [ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="4_2xpu7"]
 [ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_xpuap"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_2vvbw"]
 [ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="8_qhl48"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="9_jp0c6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x76ep"]
 atlas = ExtResource("1_ak7lh")
@@ -70,10 +70,9 @@ radius = 18.0
 height = 48.0
 
 [node name="EnemySnake" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
-collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_2xpu7")
 stats = NodePath("Stats")
-item_drop = ExtResource("2_6glnu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.4, 1.4)
@@ -133,3 +132,6 @@ script = ExtResource("8_qhl48")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 shape = SubResource("CapsuleShape2D_jp0c6")
 debug_color = Color(0.96611387, 0, 0.48549867, 0.41960785)
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("9_jp0c6")

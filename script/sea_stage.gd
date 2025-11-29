@@ -8,3 +8,4 @@ func _ready() -> void:
 
 func _on_player_died() -> void:
 	game_over_screen.set_game_over(false)
+	

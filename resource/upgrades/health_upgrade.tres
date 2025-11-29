@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ocfrc")
 id = &"health_upgrade"
-name = "Health Upgrade"
+name = "Muscular Bulk"
 description = "Increase your max health by 25"
 icon = ExtResource("1_1oktw")
 max_level = 7

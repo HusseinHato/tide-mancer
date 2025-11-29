@@ -15,6 +15,8 @@ class_name StateShoot
 var cooldown_timer: float = 0.0
 var dir_to_player: Vector2 = Vector2.ZERO
 
+var _cached_separation: Vector2
+
 func enter() -> void:
 	enemy.animated_sprite2d.play("attacking")
 	cooldown_timer = (1.0 / enemy.stats.get_fire_rate()) + randf_range(-fire_spread, fire_spread)
@@ -27,8 +29,11 @@ func physics_update(delta: float) -> void:
 	dir_to_player = enemy.global_position.direction_to(enemy.player.global_position)
 	enemy.animated_sprite2d.flip_h = dir_to_player.x >= 0.0
 
+	if Engine.get_physics_frames() % 2 == 0:
+			_cached_separation = _compute_separation()
+			
 	# Separation only if clumped
-	var separation_dir: Vector2 = _compute_separation()
+	var separation_dir: Vector2 = _cached_separation
 
 	if separation_dir.length_squared() > 0.0001:
 		# We are too close to someone → small push away

@@ -2,10 +2,12 @@ extends Node
 class_name Stats
 signal health_depleted
 signal health_changed(current_health: float, max_health: float)
+signal move_speed_modified()
 
 const FLOATING_TEXT_SCENE: PackedScene = preload("uid://db23xusumj27x")
 const CRITICAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://ccy03g0aptbgt")
 const PLAYER_FLOATING_TEXT_SCENE: PackedScene = preload("uid://dinnlfbshpkyp")
+const HEAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://b8yxa0aqbcfah")
 
 @export var base_max_health: float = 100.0
 @export var base_defense: float = 10.0
@@ -127,3 +129,7 @@ func heal(amount: float) -> void:
 	health = min(health + amount, get_max_health())
 	#print("Heal %.1f (hp: %.1f/%.1f)" % [amount, health, get_max_health()])
 	health_changed.emit(health, get_max_health())
+	var heal_text_instance = HEAL_FLOATING_TEXT_SCENE.instantiate()
+	heal_text_instance.text = "%d" % amount
+	heal_text_instance.global_position = get_parent().global_position
+	get_tree().current_scene.add_child.call_deferred(heal_text_instance)

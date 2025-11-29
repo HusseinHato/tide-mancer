@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8yxa0aqbcfah"]
+
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="1_agusk"]
+[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/floating_text.gd" id="2_nvh6u"]
+
+[node name="HealFloatingText" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.24313726, 0.8392157, 0.05490196, 1)
+theme_override_colors/font_outline_color = Color(0, 0.3019608, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_agusk")
+theme_override_font_sizes/font_size = 22
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_nvh6u")

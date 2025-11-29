@@ -1,20 +1,24 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal enemy_died
+
 @onready var animated_sprite2d: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: Stats
-@export var item_drop: PackedScene
 @export var speed: float = 70.0
 @export var acceleration: float = 600.0
 @export var friction: float = 800.0
-@export var hp_per_minute: float = 40
+@export var hp_per_minute: float = 70
+@export var defense_per_minute: float = 5
+@export var attack_per_minute: = 4
 
 var player: Player
 var is_dying: bool = false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	stats.move_speed_modified.connect(_recalculate_stats)
 	stats.health_depleted.connect(_die)
 	
 	_recalculate_stats()
@@ -23,6 +27,8 @@ func init_with_time(elapsed: float) -> void:
 	var minutes: int = floor(elapsed / 60)
 	stats.bonus_max_health += hp_per_minute * minutes
 	stats.health = stats.get_max_health()
+	stats.bonus_attack = attack_per_minute * minutes
+	stats.bonus_defense = defense_per_minute * minutes
 
 func _recalculate_stats() -> void:
 	speed = stats.get_move_speed()
@@ -40,12 +46,12 @@ func _die() -> void:
 		return
 	
 	is_dying = true
-	call_deferred("_drop_item")
+	enemy_died.emit()
 	
 	queue_free()
 
-func _drop_item() -> void:
-	if item_drop:
-		var item = item_drop.instantiate() as ExperienceGem
-		item.global_position = global_position
-		get_tree().current_scene.get_node("Entities").add_child(item)
+#func _drop_item() -> void:
+	#if item_drop:
+		#var item = item_drop.instantiate() as ExperienceGem
+		#item.global_position = global_position
+		#get_tree().current_scene.get_node("Entities").add_child(item)

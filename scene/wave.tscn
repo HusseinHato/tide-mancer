@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=3 uid="uid://b8viwgkasme8v"]
+
+[ext_resource type="Script" uid="uid://w0kafb4h0rby" path="res://script/wave.gd" id="1_1euoi"]
+[ext_resource type="Texture2D" uid="uid://c76go4oaqopm8" path="res://texture/wave-Sheet.png" id="2_ncfah"]
+[ext_resource type="Script" uid="uid://c2f8woedp0j8l" path="res://script/status_effect.gd" id="2_w15pd"]
+[ext_resource type="Resource" uid="uid://b2j36auo23yxm" path="res://resource/debuffs/fire_rate.tres" id="3_yl2dx"]
+[ext_resource type="Resource" uid="uid://dq51trxj7yimw" path="res://resource/debuffs/haste.tres" id="4_ar1cj"]
+[ext_resource type="Resource" uid="uid://pc0nb2xg0n88" path="res://resource/debuffs/regen.tres" id="5_q8fsi"]
+[ext_resource type="Resource" uid="uid://b5rb707mgrodu" path="res://resource/debuffs/poison_2.tres" id="6_nvnvn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w15pd"]
+atlas = ExtResource("2_ncfah")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl2dx"]
+atlas = ExtResource("2_ncfah")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pamrc"]
+atlas = ExtResource("2_ncfah")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar1cj"]
+atlas = ExtResource("2_ncfah")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8fsi"]
+atlas = ExtResource("2_ncfah")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nvnvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w15pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yl2dx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pamrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar1cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8fsi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tl4r4"]
+radius = 97.0
+height = 404.0
+
+[node name="Wave" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_1euoi")
+effects_for_player = Array[ExtResource("2_w15pd")]([ExtResource("3_yl2dx"), ExtResource("4_ar1cj"), ExtResource("5_q8fsi")])
+effects_for_enemies = Array[ExtResource("2_w15pd")]([ExtResource("6_nvnvn")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -34.999996)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_nvnvn")
+frame_progress = 0.63285404
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tl4r4")
+debug_color = Color(0.525612, 0.5730455, 5.7756904e-07, 0.41960785)

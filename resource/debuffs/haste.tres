@@ -5,10 +5,11 @@
 
 [resource]
 script = ExtResource("1_r3g8v")
+move_speed_delta = 50.0
 id = &"haste"
 is_buff = true
 icon = ExtResource("1_s0ubp")
-duration = 99.0
+duration = 6.0
 tick_interval = 999999.0
-max_stacks = 5
+max_stacks = 1
 metadata/_custom_type_script = "uid://d2h856k7shmqh"

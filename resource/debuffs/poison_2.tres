@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PoisonEffect" load_steps=3 format=3 uid="uid://b5rb707mgrodu"]
+
+[ext_resource type="Script" uid="uid://2a24cxhbp2e0" path="res://resource/debuffs/poison_effect.gd" id="1_c16lc"]
+[ext_resource type="Texture2D" uid="uid://derfcyjv4iuuh" path="res://texture/poison_icon.png" id="1_hyr5l"]
+
+[resource]
+script = ExtResource("1_c16lc")
+id = &"poison_2"
+icon = ExtResource("1_hyr5l")
+duration = 5.0
+tick_interval = 1.0
+max_stacks = 4
+metadata/_custom_type_script = "uid://2a24cxhbp2e0"

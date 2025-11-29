@@ -12,36 +12,34 @@ signal player_dead
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var stats: Stats = $Stats
 
-@export var poison_effect: PoisonEffect
-@export var haste_effect: HasteEffect
-@export var regen_effect: RegenEffect
-@export var fire_rate_effect: FireRateEffect
+#@export var poison_effect: PoisonEffect
+#@export var haste_effect: HasteEffect
+#@export var regen_effect: RegenEffect
+#@export var fire_rate_effect: FireRateEffect
 
 @export var pistol_weapon: WeponData
 @export var shotgun_weapon: WeponData
 
 func _ready() -> void:
 	stats.health_depleted.connect(died)
-	haste_effect.on_haste_apply.connect(_on_haste_applied)
-	haste_effect.on_haste_expire.connect(_on_haste_expired)
+	stats.move_speed_modified.connect(recalculate_stats)
+	#haste_effect.on_haste_apply.connect(_on_haste_applied)
+	#haste_effect.on_haste_expire.connect(_on_haste_expired)
+	Events.hot_dog_picked.connect(_on_hotdog_picked)
 	
-	if has_node("StatusController"):
-		var controller: StatusController = get_node("StatusController")
+	#if has_node("StatusController"):
+		#var controller: StatusController = get_node("StatusController")
 		#controller.apply_effect(poison_effect)
 		#controller.apply_effect(haste_effect)
 		#controller.apply_effect(regen_effect)
 		#controller.apply_effect(fire_rate_effect)
+	
+	recalculate_stats()
 
 func recalculate_stats() -> void:
 	speed = stats.get_move_speed()
-	acceleration = speed * 2
-	friction = acceleration * 2 
-
-func _on_haste_applied() -> void:
-	recalculate_stats()
-
-func _on_haste_expired() -> void:
-	recalculate_stats()
+	acceleration = speed * 2.5
+	friction = acceleration * 3.5 
 
 func _process(delta: float) -> void:
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -71,3 +69,6 @@ func switch_weapon() -> void:
 			weapon.set_weapon_data(shotgun_weapon)
 		else:
 			weapon.set_weapon_data(pistol_weapon)
+
+func _on_hotdog_picked(amount: float) -> void:
+	stats.heal(amount)

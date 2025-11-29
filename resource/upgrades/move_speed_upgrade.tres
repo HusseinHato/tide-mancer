@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Move_Speed" load_steps=3 format=3 uid="uid://ce43gs5siuk4a"]
+
+[ext_resource type="Script" uid="uid://1e8rfh0v7u71" path="res://resource/upgrades/upgrade_move_speed.gd" id="1_kocys"]
+[ext_resource type="Texture2D" uid="uid://sknu68wk78wo" path="res://texture/haste.png" id="1_tirt0"]
+
+[resource]
+script = ExtResource("1_kocys")
+bonus_move_speed_per_level = 25.0
+id = &"move_speed_upgrade"
+name = "Fast Foot"
+description = "Increase Move Speed by 25 points."
+icon = ExtResource("1_tirt0")
+max_level = 5
+metadata/_custom_type_script = "uid://1e8rfh0v7u71"

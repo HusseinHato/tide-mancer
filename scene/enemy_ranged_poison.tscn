@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqetwdc56o0eg"]
+[gd_scene load_steps=21 format=3 uid="uid://cqetwdc56o0eg"]
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_1jykm"]
 [ext_resource type="Texture2D" uid="uid://ck4asgx5ordek" path="res://texture/enemy_shooter2-Sheet.png" id="2_gtty4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="7_c57qu"]
 [ext_resource type="PackedScene" uid="uid://bbsv4yg5t3w61" path="res://scene/effect_bullet.tscn" id="7_gtty4"]
 [ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="8_takg8"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="10_otbyq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u133b"]
 atlas = ExtResource("2_gtty4")
@@ -87,7 +88,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vblle"]
 
 [node name="EnemyRangedPoison" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
-collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_1jykm")
 stats = NodePath("Stats")
 metadata/_custom_type_script = "uid://bsa2gqsf4n8t5"
@@ -127,11 +128,12 @@ metadata/_custom_type_script = "uid://dkuyuvcex0tys"
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("7_c57qu")
-base_max_health = 25.0
+base_max_health = 30.0
 base_defense = 5.0
-base_attack = 4.0
+base_attack = 9.0
 base_move_speed = 60.0
 base_projectile_speed = 225.0
+base_fire_rate = 1.2
 metadata/_custom_type_script = "uid://5voq86b0plfn"
 
 [node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
@@ -159,3 +161,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHurtbox"]
 polygon = PackedVector2Array(10, -14, 22, -10, 23, -4, 17, -4, 10, -4, 14, 5, 11, 8, -3, 0, -7, 1, -7, 7, -18, 2, -24, -7, -18, -12, -14, -3, -11, -9, -7, -18, 7, -29, 2, -35, -4, -32, -10, -33, -9, -38, -4, -42, 6, -43, 14, -38, 14, -26, 8, -17)
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("10_otbyq")
+metadata/_custom_type_script = "uid://b21n7garto5js"

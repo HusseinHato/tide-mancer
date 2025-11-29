@@ -4,12 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://derfcyjv4iuuh" path="res://texture/poison_icon.png" id="1_iwq5a"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_cko6w")
-damage_per_tick = 2.5
+damage_per_tick = 3.0
 id = &"poison"
 icon = ExtResource("1_iwq5a")
-duration = 4.0
+duration = 5.0
 tick_interval = 1.0
-max_stacks = 1
+max_stacks = 2
 metadata/_custom_type_script = "uid://2a24cxhbp2e0"

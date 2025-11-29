@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cl01ala1vnfhm"]
+[gd_scene load_steps=18 format=3 uid="uid://cl01ala1vnfhm"]
 
 [ext_resource type="Texture2D" uid="uid://c5kpvovgoajir" path="res://texture/enemy_tank-Sheet.png" id="1_bh0iw"]
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_kdhjb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="4_q464c"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="5_kdhjb"]
 [ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_fhylh"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="8_5psyb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fo8p"]
 atlas = ExtResource("1_bh0iw")
@@ -68,7 +69,7 @@ radius = 19.0
 height = 86.0
 
 [node name="EnemyTank" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
-collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_kdhjb")
 stats = NodePath("Stats")
 
@@ -95,10 +96,10 @@ shape = SubResource("CapsuleShape2D_u4nns")
 debug_color = Color(0.9572193, 0, 0.5363568, 0.41960785)
 
 [node name="Stats" parent="." instance=ExtResource("2_0fo8p")]
-base_max_health = 300.0
-base_defense = 60.0
-base_attack = 15.0
-base_move_speed = 35.0
+base_max_health = 750.0
+base_defense = 75.0
+base_attack = 20.0
+base_move_speed = 40.0
 base_projectile_speed = 0.0
 
 [node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
@@ -137,3 +138,7 @@ script = ExtResource("7_fhylh")
 position = Vector2(-4, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_kdhjb")
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("8_5psyb")
+metadata/_custom_type_script = "uid://b21n7garto5js"

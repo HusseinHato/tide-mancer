@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8ntpxl3kj03j"]
+[gd_scene load_steps=22 format=3 uid="uid://8ntpxl3kj03j"]
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_tbamt"]
 [ext_resource type="Texture2D" uid="uid://bplhgbsrcmpkd" path="res://texture/enemy_shoot-Sheet.png" id="2_r6hsb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="5_ipjqk"]
 [ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/enemy_bullet.tscn" id="6_0fmoi"]
 [ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="8_i3qmn"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="9_x6jhe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_erxfx"]
 atlas = ExtResource("2_r6hsb")
@@ -94,7 +95,7 @@ radius = 18.0
 height = 40.0
 
 [node name="EnemyRanged" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
-collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_tbamt")
 stats = NodePath("Stats")
 
@@ -122,12 +123,12 @@ resume_chase_distance = 300.0
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("5_ipjqk")
-base_max_health = 15.0
+base_max_health = 20.0
 base_defense = 5.0
 base_attack = 7.0
 base_move_speed = 50.0
-base_projectile_speed = 175.0
-base_fire_rate = 0.75
+base_projectile_speed = 195.0
+base_fire_rate = 0.85
 metadata/_custom_type_script = "uid://5voq86b0plfn"
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
@@ -152,5 +153,11 @@ offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -13.0
+offset_top = -55.0
+offset_right = 27.0
+offset_bottom = -15.0
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("9_x6jhe")
+metadata/_custom_type_script = "uid://b21n7garto5js"

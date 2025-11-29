@@ -20,3 +20,6 @@ shape = SubResource("CapsuleShape2D_1bt1p")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.22, 1.22)
 texture = ExtResource("2_m2l4i")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

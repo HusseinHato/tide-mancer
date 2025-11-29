@@ -8,9 +8,9 @@ class_name StateChase
 @export var max_neighbors: int = 4                   # Limit neighbors checked (0 = no limit)
 @export var next_state_on_stop: String = ""
 
+var _cached_separation: Vector2
+
 func physics_update(delta: float) -> void:
-	#if enemy.is_dying:
-		#return
 	
 	enemy.animated_sprite2d.play("swimming")
 	
@@ -24,12 +24,12 @@ func physics_update(delta: float) -> void:
 		if dist_to_player > stop_distance:
 			var dir_to_player: Vector2 = to_player / dist_to_player
 			
-			#if Engine.get_physics_frames() % 2 == 0:
-				#_cached_separation = _compute_separation()
+			if Engine.get_physics_frames() % 2 == 0:
+				_cached_separation = _compute_separation()
 			
-			#var separation: Vector2 = _cached_separation
+			var separation: Vector2 = _cached_separation
 			
-			var separation = _compute_separation()
+			#var separation = _compute_separation()
 			
 			var combined_dir: Vector2 = dir_to_player + separation * separation_weight
 			

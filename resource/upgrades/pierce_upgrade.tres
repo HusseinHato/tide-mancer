@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Pierce" load_steps=3 format=3 uid="uid://be751igvl2s82"]
+
+[ext_resource type="Texture2D" uid="uid://cjlk0lm5esvly" path="res://texture/piercing.png" id="1_06330"]
+[ext_resource type="Script" uid="uid://dhl0mmqme53by" path="res://resource/upgrades/upgrade_pierce.gd" id="1_oamcb"]
+
+[resource]
+script = ExtResource("1_oamcb")
+id = &"pierce_upgrade"
+name = "Unstoppable Bullet"
+description = "Increase pierce count by 1"
+icon = ExtResource("1_06330")
+max_level = 4
+metadata/_custom_type_script = "uid://dhl0mmqme53by"
