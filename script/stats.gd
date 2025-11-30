@@ -54,7 +54,7 @@ func get_max_health() -> float:
 	return max(1.0, base_max_health + bonus_max_health)
 
 func get_defense() -> float:
-	return max(0.0, base_defense + bonus_defense)
+	return base_defense + bonus_defense
 
 func get_attack() -> float:
 	return max(0.0, (base_attack + bonus_attack) * attack_multiplier)
