@@ -8,6 +8,12 @@ const FLOATING_TEXT_SCENE: PackedScene = preload("uid://db23xusumj27x")
 const CRITICAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://ccy03g0aptbgt")
 const PLAYER_FLOATING_TEXT_SCENE: PackedScene = preload("uid://dinnlfbshpkyp")
 const HEAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://b8yxa0aqbcfah")
+const EVADED_FLOATING_TEXT_SCENE: PackedScene = preload("uid://d223dqhabw04b")
+
+const PLAYER_HURT_SFX: AudioStream = preload("uid://b7dd5miyo2gh4")
+const ENEMY_HIT_SFX: AudioStream = preload("uid://b8ah6yah2bcmi")
+const CRITICAL_HIT_SFX: AudioStream = preload("uid://1mp0bnvhq3cg")
+const EVADED_SFX: AudioStream = preload("uid://4u1hod0vbkl")
 
 @export var base_max_health: float = 100.0
 @export var base_defense: float = 10.0
@@ -54,7 +60,7 @@ func get_attack() -> float:
 	return max(0.0, (base_attack + bonus_attack) * attack_multiplier)
 
 func get_evasion() -> float:
-	return clamp(base_evasion + bonus_evasion, 0.0, 0.95)
+	return clamp(base_evasion + bonus_evasion, 0.0, 0.99)
 
 func get_move_speed() -> float:
 	return max(0.0, (base_move_speed + bonus_move_speed) * move_speed_multiplier)
@@ -87,16 +93,20 @@ func _ready() -> void:
 var _rng := RandomNumberGenerator.new()
 
 func take_damage(raw_damage: float, type: String) -> void:
+	_rng.randomize()
 	# Evasion Check
 	if _rng.randf() < get_evasion() and type == "normal":
-		print("Attack Evaded")
+		var evaded_text_instance = EVADED_FLOATING_TEXT_SCENE.instantiate()
+		evaded_text_instance.global_position = get_parent().global_position
+		get_tree().current_scene.add_child.call_deferred(evaded_text_instance)
+		SoundManager.play_world_sfx(EVADED_SFX, get_parent().global_position, -15.0)
 		return
 	
 	var dmg = raw_damage
 	
 	# Defense Mitigation
 	# defense = 0 => 100% Damage, Defense = 100 => 50%, etc.
-	if type == "normal":
+	if type == "normal" or type == "critical":
 		var def_factor := 100.0 / (100.0 + get_defense())
 		dmg = raw_damage * def_factor
 	
@@ -120,6 +130,14 @@ func take_damage(raw_damage: float, type: String) -> void:
 	text_instance.text = formatted_text
 	
 	text_instance.global_position = get_parent().global_position
+	
+	if owner is Player:
+		SoundManager.play_player_sfx(PLAYER_HURT_SFX, -14.0)
+	else:
+		if type == "critical":
+			SoundManager.play_world_sfx(CRITICAL_HIT_SFX, get_parent().global_position, 0.0)
+		elif type == "normal":
+			SoundManager.play_world_sfx(ENEMY_HIT_SFX, get_parent().global_position, -13.0)
 	get_tree().current_scene.add_child.call_deferred(text_instance)
 	
 	if health <= 0.0 and (health + dmg) > 0:

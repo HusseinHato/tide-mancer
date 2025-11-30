@@ -10,7 +10,7 @@ var dropable_item = {
 }
 
 @export_group("Chance")
-@export var normal_exp_chance: float = 0.83
+@export var normal_exp_chance: float = 0.93
 @export var greater_exp_chance: float = 0.12
 @export var super_exp_chance: float = 0.007
 @export var hot_dog_chance: float = 0.027

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_cdfwf")
-heal_per_tick = 5.0
+heal_per_tick = 4.0
 id = &"regen"
 is_buff = true
 icon = ExtResource("1_tarjx")

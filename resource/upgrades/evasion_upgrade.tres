@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Evasion" load_steps=3 format=3 uid="uid://b3ikt0hkakkeb"]
+
+[ext_resource type="Texture2D" uid="uid://2ei88ctwl1di" path="res://texture/evasion_up.png" id="1_ggsdi"]
+[ext_resource type="Script" uid="uid://m2fpccaca84f" path="res://resource/upgrades/upgrade_evasion.gd" id="1_j7fkj"]
+
+[resource]
+script = ExtResource("1_j7fkj")
+id = &"evasion"
+name = "Blurry"
+description = "Increase Evasion by 10%"
+icon = ExtResource("1_ggsdi")
+max_level = 4
+metadata/_custom_type_script = "uid://m2fpccaca84f"

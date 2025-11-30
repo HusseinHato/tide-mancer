@@ -2,7 +2,7 @@ extends Node
 class_name ExperienceManager
 
 @export var base_xp_to_level: int = 30
-@export var xp_growth_per_level: int = 40
+@export var xp_growth_per_level: int = 30
 
 signal xp_added(current_xp: int, xp_to_next: int)
 

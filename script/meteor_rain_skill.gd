@@ -61,6 +61,8 @@ func _spawn_meteor(dmg: float) -> void:
 	meteor.fall_speed += (stats.get_projectile_speed() / 2)
 	meteor.size += (stats.bonus_projectile_size - 1.0)
 	meteor.piercing_count += stats.get_piercing_count()
+	meteor.crit_chance = stats.get_crit_chance()
+	meteor.crit_dmg = stats.get_crit_dmg()
 	
 	# spawn somewhere around player (above)
 	var rng = RandomNumberGenerator.new()

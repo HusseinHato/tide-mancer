@@ -4,6 +4,8 @@ class_name Weapon
 @export var weapon_data: WeponData
 @export var orbit_radius: float = 27.0
 @export var rotate_weapon_sprite: bool = true
+@export var gun_shot: AudioStream
+@export var critical_gun_shot: AudioStream
 
 @onready var stats: Stats = get_parent().get_node("Stats")
 @onready var sprite: Sprite2D = $Sprite2D
@@ -57,6 +59,7 @@ func shoot() -> void:
 
 func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_index: int) -> void:
 	var bullet = weapon_data.bullet_scene.instantiate() as Bullet
+	var is_crit: bool = false
 	
 	var spread_offset: float = 0.0
 	if weapon_data.bullets_per_shot > 1:
@@ -73,6 +76,7 @@ func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_inde
 		final_damage *= stats.get_attack() / stats.base_attack
 		
 		if randf() < stats.get_crit_chance():
+			is_crit = true
 			bullet.critical_hit = true
 			final_damage *= stats.get_crit_dmg()
 	
@@ -94,6 +98,10 @@ func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_inde
 		if "damage" in bullet:
 			bullet.damage = final_damage
 	
+	if is_crit:
+		SoundManager.play_player_sfx(critical_gun_shot, -16.0)
+	else:
+		SoundManager.play_player_sfx(gun_shot, -16.0)
 	get_tree().root.add_child(bullet)
 
 func _on_shoot_timer_timeout() -> void:

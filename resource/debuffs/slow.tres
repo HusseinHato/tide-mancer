@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SlowEffect" load_steps=3 format=3 uid="uid://dhr7k64jfa85c"]
+
+[ext_resource type="Texture2D" uid="uid://ixbsgjreghkt" path="res://texture/move_speed_down.png" id="1_2g321"]
+[ext_resource type="Script" uid="uid://vrj55mhishf3" path="res://resource/debuffs/slow_effect.gd" id="1_varbj"]
+
+[resource]
+script = ExtResource("1_varbj")
+reduced_move_speed = 5.0
+id = &"slow"
+icon = ExtResource("1_2g321")
+duration = 5.0
+tick_interval = 999999.0
+max_stacks = 3
+metadata/_custom_type_script = "uid://vrj55mhishf3"

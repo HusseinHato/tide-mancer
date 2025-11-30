@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="IncreaseDefenseEffect" load_steps=3 format=3 uid="uid://d3oldtuqula7g"]
+
+[ext_resource type="Texture2D" uid="uid://dnp313kr3jy5p" path="res://texture/defense_up.png" id="1_ebar6"]
+[ext_resource type="Script" uid="uid://dj4t0gqslg1i7" path="res://resource/debuffs/increase_defense.gd" id="1_nxprs"]
+
+[resource]
+script = ExtResource("1_nxprs")
+is_buff = true
+icon = ExtResource("1_ebar6")
+duration = 6.0
+tick_interval = 999999.0
+max_stacks = 3
+metadata/_custom_type_script = "uid://dj4t0gqslg1i7"

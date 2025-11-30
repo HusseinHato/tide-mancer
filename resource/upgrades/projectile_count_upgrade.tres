@@ -9,5 +9,5 @@ id = &"projectile_count_upgrade"
 name = "Shadow Clone Bullet"
 description = "Increase your projectile count by 1"
 icon = ExtResource("1_lqybt")
-max_level = 5
+max_level = 4
 metadata/_custom_type_script = "uid://dtle5u5ttqmxp"

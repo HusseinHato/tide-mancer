@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MultiplyAttackEffect" load_steps=3 format=3 uid="uid://c0s53cl7ygklo"]
+
+[ext_resource type="Script" uid="uid://brr7dbvuh0nne" path="res://resource/debuffs/multiply_attack.gd" id="1_a44cn"]
+[ext_resource type="Texture2D" uid="uid://bow01j1yaagbv" path="res://texture/attack_multiplier.png" id="1_qxbi8"]
+
+[resource]
+script = ExtResource("1_a44cn")
+id = &"damage_taken"
+icon = ExtResource("1_qxbi8")
+duration = 4.0
+tick_interval = 999999.0
+max_stacks = 1
+metadata/_custom_type_script = "uid://brr7dbvuh0nne"

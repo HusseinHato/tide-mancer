@@ -5,12 +5,12 @@ class_name WaveSpawner
 
 @export var player: Player
 @export var area_scene: PackedScene
-@export var spawn_interval: float = 4.0
-@export var max_areas: int = 10
+@export var spawn_interval: float = 2.0
+@export var max_areas: int = 11
 
 @export var min_radius: float = 200.0
 @export var max_radius: float = 400.0
-@export var min_distance_between_areas: float = 600.0
+@export var min_distance_between_areas: float = 435.0
 
 const MAX_ATTEMPTS := 25
 

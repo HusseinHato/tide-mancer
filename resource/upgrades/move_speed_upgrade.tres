@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_kocys")
-bonus_move_speed_per_level = 25.0
+bonus_move_speed_per_level = 20.0
 id = &"move_speed_upgrade"
 name = "Fast Foot"
-description = "Increase Move Speed by 25 points."
+description = "Increase Move Speed by 20 points."
 icon = ExtResource("1_tirt0")
-max_level = 5
+max_level = 6
 metadata/_custom_type_script = "uid://1e8rfh0v7u71"

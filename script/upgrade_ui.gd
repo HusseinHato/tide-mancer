@@ -4,6 +4,7 @@ class_name  UpgradeUI
 signal upgrade_selected(upgrade: UpgradeData)
 
 const UPGRADE_OPTION_SCENE = preload("uid://rcp074axgpew")
+@export var level_up_sound: AudioStream
 
 @onready var options_container: HBoxContainer = %OptionsContainer
 @onready var title_label: Label = %TitleLabel
@@ -19,6 +20,8 @@ func show_choices(choices: Array[UpgradeData]) -> void:
 	
 	get_tree().paused = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	SoundManager.play_player_sfx(level_up_sound, -13.0)
 	
 	title_label.text = "Choose an Upgrade"
 	_clear_options()

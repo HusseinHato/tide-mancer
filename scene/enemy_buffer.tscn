@@ -1,0 +1,140 @@
+[gd_scene load_steps=18 format=3 uid="uid://wgg6d1nr05b6"]
+
+[ext_resource type="Texture2D" uid="uid://sva6sj0jppgm" path="res://texture/enemy-buffer-Sheet.png" id="1_ckii3"]
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_uejv3"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="2_rql8t"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="3_chx36"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="4_gjrrx"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="5_ajqxh"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="6_je41w"]
+[ext_resource type="Script" uid="uid://bj4888736wx3c" path="res://script/buff_aura_component.gd" id="7_ajqxh"]
+[ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_dwghf"]
+[ext_resource type="Resource" uid="uid://dkalduco2bco3" path="res://resource/debuffs/haste_2.tres" id="10_dwghf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cg28"]
+atlas = ExtResource("1_ckii3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rql8t"]
+atlas = ExtResource("1_ckii3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chx36"]
+atlas = ExtResource("1_ckii3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgpxs"]
+atlas = ExtResource("1_ckii3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjrrx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cg28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rql8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chx36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgpxs")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ajqxh"]
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_je41w"]
+radius = 120.0
+
+[node name="EnemyBuffer" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+collision_mask = 0
+script = ExtResource("1_uejv3")
+stats = NodePath("Stats")
+is_buffer = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gjrrx")
+animation = &"swimming"
+frame = 3
+frame_progress = 0.6796268
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+shape = SubResource("CapsuleShape2D_ajqxh")
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHurtbox"]
+polygon = PackedVector2Array(6, -3, 11, -14, 5, -20, -4, -10, -17, -23, -19, -15, -13, -5, -12, 19, 8, 19)
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_rql8t")
+base_max_health = 75.0
+base_move_speed = 55.0
+metadata/_custom_type_script = "uid://5voq86b0plfn"
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("3_chx36")
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+metadata/_custom_type_script = "uid://dgkq2qdinr5ur"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -60.0
+offset_right = 17.0
+offset_bottom = -20.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_gjrrx")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("5_ajqxh")
+metadata/_custom_type_script = "uid://8ih7wlplidj5"
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_dwghf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHitbox"]
+polygon = PackedVector2Array(6, -3, 11, -14, 5, -20, -4, -10, -17, -23, -19, -15, -13, -5, -12, 19, 8, 19)
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("6_je41w")
+metadata/_custom_type_script = "uid://b21n7garto5js"
+
+[node name="BuffAuraComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("7_ajqxh")
+status_effect = ExtResource("10_dwghf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuffAuraComponent"]
+shape = SubResource("CircleShape2D_je41w")
+debug_color = Color(0.5916044, 0.53255135, 0.36186847, 0.41960785)
+
+[node name="ApplyBuffTimer" type="Timer" parent="BuffAuraComponent"]
+autostart = true

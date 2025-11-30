@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_r3g8v")
-move_speed_delta = 50.0
+move_speed_delta = 30.0
 id = &"haste"
 is_buff = true
 icon = ExtResource("1_s0ubp")

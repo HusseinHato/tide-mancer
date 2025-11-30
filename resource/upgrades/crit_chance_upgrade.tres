@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Crit_Chance" load_steps=3 format=3 uid="uid://cm5wt28n0fr4r"]
+
+[ext_resource type="Script" uid="uid://bvcvtaudx88m6" path="res://resource/upgrades/upgrade_crit_chance.gd" id="1_8t6ey"]
+[ext_resource type="Texture2D" uid="uid://dijpivl6ln5oj" path="res://texture/crit_chance.png" id="1_mhyu5"]
+
+[resource]
+script = ExtResource("1_8t6ey")
+id = &"crit_chance"
+name = "Bonking Chance"
+description = "Increaset Critical Damage Chance by 10%"
+icon = ExtResource("1_mhyu5")
+max_level = 5
+metadata/_custom_type_script = "uid://bvcvtaudx88m6"

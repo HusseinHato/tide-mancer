@@ -9,6 +9,8 @@ var damage: float = 10.0
 var fall_speed: float = 150.0
 var size: float = 1.2
 var piercing_count: int = 0
+var crit_chance: float = 0.0
+var crit_dmg: float = 0.0
 
 func _ready() -> void:
 	animation_player.scale = Vector2(size, size)
@@ -28,6 +30,10 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_node("Stats"):
 		var target_stats: Stats = area.get_parent().get_node("Stats")
+		randomize()
+		if randf() < crit_chance:
+			damage *= crit_dmg
+			target_stats.take_damage(damage, "critical")
 		target_stats.take_damage(damage, "normal")
 	if piercing_count > 0:
 		piercing_count -= 1

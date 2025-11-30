@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_xr63c")
-fire_rate_per_level = 0.7
+fire_rate_per_level = 0.6
 id = &"fire_rate_upgrade"
 name = "Swift Hand"
-description = "Increase Your Fire Rate by 0.7 Points"
+description = "Increase Your Fire Rate by 0.6 Points"
 icon = ExtResource("1_7k5bx")
-max_level = 6
+max_level = 7
 metadata/_custom_type_script = "uid://cfnnyfnnauv1p"

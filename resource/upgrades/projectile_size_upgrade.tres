@@ -9,5 +9,5 @@ id = &"projectile_size_upgrade"
 name = "Bigger Bullet"
 description = "Upgrade your projectile size by 25%"
 icon = ExtResource("1_2ifkr")
-max_level = 6
+max_level = 5
 metadata/_custom_type_script = "uid://7oyuugaxh2e2"

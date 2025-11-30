@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8viwgkasme8v"]
+[gd_scene load_steps=21 format=3 uid="uid://b8viwgkasme8v"]
 
 [ext_resource type="Script" uid="uid://w0kafb4h0rby" path="res://script/wave.gd" id="1_1euoi"]
 [ext_resource type="Texture2D" uid="uid://c76go4oaqopm8" path="res://texture/wave-Sheet.png" id="2_ncfah"]
@@ -6,7 +6,13 @@
 [ext_resource type="Resource" uid="uid://b2j36auo23yxm" path="res://resource/debuffs/fire_rate.tres" id="3_yl2dx"]
 [ext_resource type="Resource" uid="uid://dq51trxj7yimw" path="res://resource/debuffs/haste.tres" id="4_ar1cj"]
 [ext_resource type="Resource" uid="uid://pc0nb2xg0n88" path="res://resource/debuffs/regen.tres" id="5_q8fsi"]
+[ext_resource type="Resource" uid="uid://d3oldtuqula7g" path="res://resource/debuffs/defense_up.tres" id="6_8w0iq"]
 [ext_resource type="Resource" uid="uid://b5rb707mgrodu" path="res://resource/debuffs/poison_2.tres" id="6_nvnvn"]
+[ext_resource type="Resource" uid="uid://dhr7k64jfa85c" path="res://resource/debuffs/slow.tres" id="7_q8fsi"]
+[ext_resource type="Resource" uid="uid://bs0w4ohkkm2t5" path="res://resource/debuffs/attack_up.tres" id="7_xnqcu"]
+[ext_resource type="Resource" uid="uid://mixgq37ql2d4" path="res://resource/debuffs/defense_down.tres" id="9_00in7"]
+[ext_resource type="Resource" uid="uid://c0s53cl7ygklo" path="res://resource/debuffs/multiply_damage_taken.tres" id="10_00in7"]
+[ext_resource type="AudioStream" uid="uid://b5nhecky07itx" path="res://sounds/wave_sound.wav" id="12_j5g6r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w15pd"]
 atlas = ExtResource("2_ncfah")
@@ -58,17 +64,21 @@ height = 404.0
 [node name="Wave" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_1euoi")
-effects_for_player = Array[ExtResource("2_w15pd")]([ExtResource("3_yl2dx"), ExtResource("4_ar1cj"), ExtResource("5_q8fsi")])
-effects_for_enemies = Array[ExtResource("2_w15pd")]([ExtResource("6_nvnvn")])
+effects_for_player = Array[ExtResource("2_w15pd")]([ExtResource("3_yl2dx"), ExtResource("4_ar1cj"), ExtResource("5_q8fsi"), ExtResource("6_8w0iq"), ExtResource("7_xnqcu")])
+effects_for_enemies = Array[ExtResource("2_w15pd")]([ExtResource("6_nvnvn"), ExtResource("7_q8fsi"), ExtResource("9_00in7"), ExtResource("10_00in7")])
+wave_sound = ExtResource("12_j5g6r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -34.999996)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_nvnvn")
-frame_progress = 0.63285404
+frame_progress = 0.83676064
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tl4r4")
 debug_color = Color(0.525612, 0.5730455, 5.7756904e-07, 0.41960785)
+
+[node name="ApplyBuffTimer" type="Timer" parent="."]
+autostart = true

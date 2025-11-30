@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bhlp3r8w6ch5f"]
+[gd_scene load_steps=47 format=4 uid="uid://bhlp3r8w6ch5f"]
 
 [ext_resource type="PackedScene" uid="uid://8qs7ip8igu6" path="res://scene/player.tscn" id="1_amuwk"]
 [ext_resource type="Script" uid="uid://da3lhmji2gndk" path="res://script/sea_stage.gd" id="1_p26xr"]
@@ -33,9 +33,15 @@
 [ext_resource type="Resource" uid="uid://cxctwe1a2d5hm" path="res://resource/enemies/blue_ring_octopus.tres" id="24_we7s2"]
 [ext_resource type="Resource" uid="uid://ce43gs5siuk4a" path="res://resource/upgrades/move_speed_upgrade.tres" id="25_ep3b6"]
 [ext_resource type="Resource" uid="uid://di6857j2tg40p" path="res://resource/enemies/poisonus_bat.tres" id="26_fc43f"]
+[ext_resource type="Resource" uid="uid://cm5wt28n0fr4r" path="res://resource/upgrades/crit_chance_upgrade.tres" id="27_r8v3n"]
+[ext_resource type="Resource" uid="uid://c36li0mr5gw6i" path="res://resource/upgrades/crit_damage_upgrade.tres" id="28_b1s3k"]
 [ext_resource type="Resource" uid="uid://dawa0sl8qhsen" path="res://resource/enemies/poisonus_flying_octopus.tres" id="29_p26xr"]
+[ext_resource type="Resource" uid="uid://b3ikt0hkakkeb" path="res://resource/upgrades/evasion_upgrade.tres" id="29_t24ux"]
+[ext_resource type="Resource" uid="uid://b5y8o824cen8l" path="res://resource/upgrades/defense_upgrade.tres" id="30_b1s3k"]
 [ext_resource type="PackedScene" uid="uid://becwtdpvqaxov" path="res://scene/game_over.tscn" id="31_myvl3"]
+[ext_resource type="AudioStream" uid="uid://bxx8tuund2moo" path="res://sounds/level_up.wav" id="31_wcy4k"]
 [ext_resource type="PackedScene" uid="uid://b8viwgkasme8v" path="res://scene/wave.tscn" id="37_mippi"]
+[ext_resource type="Resource" uid="uid://bignitp16tca" path="res://resource/enemies/white_tree.tres" id="41_wcy4k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_usqvo"]
 texture = ExtResource("1_usqvo")
@@ -201,16 +207,17 @@ script = ExtResource("8_1y8c8")
 
 [node name="UpgradeManager" type="Node" parent="." node_paths=PackedStringArray("upgrade_ui", "player")]
 script = ExtResource("9_psc0b")
-available_upgrades = Array[ExtResource("10_6823s")]([ExtResource("11_r0r4p"), ExtResource("12_1f8tb"), ExtResource("13_a77dk"), ExtResource("14_33lt2"), ExtResource("22_myvl3"), ExtResource("23_2lall"), ExtResource("24_rwi4g"), ExtResource("25_ep3b6")])
+available_upgrades = Array[ExtResource("10_6823s")]([ExtResource("11_r0r4p"), ExtResource("12_1f8tb"), ExtResource("13_a77dk"), ExtResource("14_33lt2"), ExtResource("22_myvl3"), ExtResource("23_2lall"), ExtResource("24_rwi4g"), ExtResource("25_ep3b6"), ExtResource("27_r8v3n"), ExtResource("28_b1s3k"), ExtResource("29_t24ux"), ExtResource("30_b1s3k")])
 upgrade_ui = NodePath("../UpgradeUI")
 player = NodePath("../Entities/Player")
 
 [node name="UpgradeUI" parent="." instance=ExtResource("10_poequ")]
 visible = false
+level_up_sound = ExtResource("31_wcy4k")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_66x4v")]
 player = NodePath("../Entities/Player")
-enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv"), ExtResource("26_fc43f"), ExtResource("29_p26xr")])
+enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv"), ExtResource("26_fc43f"), ExtResource("29_p26xr"), ExtResource("41_wcy4k")])
 min_spawn_interval = 1.0
 spawn_interval_decay_per_sec = 0.01
 base_enemies_per_wave = 2

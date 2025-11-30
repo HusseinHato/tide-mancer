@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_c16lc")
+damage_per_tick = 4.0
 id = &"poison_2"
 icon = ExtResource("1_hyr5l")
 duration = 5.0
 tick_interval = 1.0
-max_stacks = 4
+max_stacks = 3
 metadata/_custom_type_script = "uid://2a24cxhbp2e0"

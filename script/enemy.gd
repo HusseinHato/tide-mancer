@@ -7,11 +7,13 @@ signal enemy_died
 
 @export var stats: Stats
 @export var speed: float = 70.0
-@export var acceleration: float = 600.0
-@export var friction: float = 800.0
-@export var hp_per_minute: float = 70
-@export var defense_per_minute: float = 5
-@export var attack_per_minute: = 4
+@export var acceleration: float = 370.0
+@export var friction: float = 670.0
+@export var hp_per_minute: float = 40
+@export var defense_per_minute: float = 4
+@export var attack_per_minute: = 3
+@export var move_speed_per_minute: float = 2.0
+@export var is_buffer: bool = false
 
 var player: Player
 var is_dying: bool = false
@@ -29,6 +31,7 @@ func init_with_time(elapsed: float) -> void:
 	stats.health = stats.get_max_health()
 	stats.bonus_attack = attack_per_minute * minutes
 	stats.bonus_defense = defense_per_minute * minutes
+	stats.bonus_move_speed = move_speed_per_minute * minutes
 
 func _recalculate_stats() -> void:
 	speed = stats.get_move_speed()
@@ -49,9 +52,3 @@ func _die() -> void:
 	enemy_died.emit()
 	
 	queue_free()
-
-#func _drop_item() -> void:
-	#if item_drop:
-		#var item = item_drop.instantiate() as ExperienceGem
-		#item.global_position = global_position
-		#get_tree().current_scene.get_node("Entities").add_child(item)

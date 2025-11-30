@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Crit_Damage" load_steps=3 format=3 uid="uid://c36li0mr5gw6i"]
+
+[ext_resource type="Texture2D" uid="uid://byptvvlysebbs" path="res://texture/crit_dmg.png" id="1_1cd48"]
+[ext_resource type="Script" uid="uid://cns5r878dlsnx" path="res://resource/upgrades/upgrade_crit_damage.gd" id="1_vs86k"]
+
+[resource]
+script = ExtResource("1_vs86k")
+crit_dmg_per_level = 0.5
+id = &"crit_dmg"
+name = "Bonking Damage"
+description = "Increase Critical damage by 50%"
+icon = ExtResource("1_1cd48")
+max_level = 5
+metadata/_custom_type_script = "uid://cns5r878dlsnx"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Defense" load_steps=3 format=3 uid="uid://b5y8o824cen8l"]
+
+[ext_resource type="Script" uid="uid://bd6kxfgdxmcvx" path="res://resource/upgrades/upgrade_defense.gd" id="1_v0fjb"]
+[ext_resource type="Texture2D" uid="uid://dnp313kr3jy5p" path="res://texture/defense_up.png" id="1_v6ma1"]
+
+[resource]
+script = ExtResource("1_v0fjb")
+defense_per_level = 17.0
+id = &"defense"
+name = "Thick Skin"
+description = "Increase Defense by 17 points"
+icon = ExtResource("1_v6ma1")
+max_level = 5
+metadata/_custom_type_script = "uid://bd6kxfgdxmcvx"

@@ -4,6 +4,7 @@ class_name UpgradeManager
 @export var available_upgrades: Array[UpgradeData] = []
 @export var upgrade_ui: UpgradeUI
 @export var player: Player
+#@export var level_up_sound: AudioStream
 
 var _upgrade_levels: Dictionary = {}
 var stats: Stats

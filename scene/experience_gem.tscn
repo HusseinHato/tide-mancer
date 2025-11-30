@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdidaf5xsujf3"]
+[gd_scene load_steps=5 format=3 uid="uid://cdidaf5xsujf3"]
 
 [ext_resource type="Script" uid="uid://bna0ahf6bdlhw" path="res://script/experience_gem.gd" id="1_p2hcs"]
 [ext_resource type="Texture2D" uid="uid://b2a2ocj87xiuv" path="res://texture/exp3.png" id="2_p2hcs"]
+[ext_resource type="AudioStream" uid="uid://bpvh16i4pqjl2" path="res://sounds/normal_exp.wav" id="2_v004y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2hcs"]
 radius = 17.117243
@@ -10,6 +11,7 @@ radius = 17.117243
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_p2hcs")
+pickup_sound = ExtResource("2_v004y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p2hcs")

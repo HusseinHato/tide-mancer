@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://bignitp16tca"]
+
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_3t2w2"]
+[ext_resource type="PackedScene" uid="uid://wgg6d1nr05b6" path="res://scene/enemy_buffer.tscn" id="1_afgw8"]
+
+[resource]
+script = ExtResource("1_3t2w2")
+scene = ExtResource("1_afgw8")
+unlock_time = 360.0
+weight = 5.0
+metadata/_custom_type_script = "uid://c7xnvkxd2yajl"
