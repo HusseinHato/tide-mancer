@@ -9,5 +9,5 @@ id = &"crit_chance"
 name = "Bonking Chance"
 description = "Increaset Critical Damage Chance by 10%"
 icon = ExtResource("1_mhyu5")
-max_level = 5
+max_level = 8
 metadata/_custom_type_script = "uid://bvcvtaudx88m6"

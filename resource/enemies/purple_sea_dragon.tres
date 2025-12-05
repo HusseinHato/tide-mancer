@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://cwn3yu7iq2svk"]
+
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_aemd0"]
+[ext_resource type="PackedScene" uid="uid://dahjtfqn5x60s" path="res://scene/enemy/enemy_tank_poison.tscn" id="1_grv3x"]
+
+[resource]
+script = ExtResource("1_aemd0")
+scene = ExtResource("1_grv3x")
+unlock_time = 420.0
+weight = 4.0
+metadata/_custom_type_script = "uid://c7xnvkxd2yajl"

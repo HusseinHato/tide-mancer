@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_yi8ra")
+bonus_size_per_level = 0.2
 id = &"projectile_size_upgrade"
 name = "Bigger Bullet"
-description = "Upgrade your projectile size by 25%"
+description = "Upgrade your projectile size by 20%"
 icon = ExtResource("1_2ifkr")
 max_level = 5
 metadata/_custom_type_script = "uid://7oyuugaxh2e2"

@@ -1,14 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://becwtdpvqaxov"]
 
 [ext_resource type="Script" uid="uid://l0tgt4kegnko" path="res://script/game_over.gd" id="1_mxr41"]
-[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="2_bc2bx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pabp"]
-content_margin_left = 4.0
-content_margin_top = 8.0
-content_margin_right = 4.0
-content_margin_bottom = 8.0
-bg_color = Color(0.44291073, 0.4429108, 0.4429106, 1)
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="2_bc2bx"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="2_mxr41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooyig"]
 content_margin_left = 4.0
@@ -38,41 +32,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 0.28235295, 1, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -312.0
 offset_top = -150.0
-offset_right = 200.0
+offset_right = 312.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 22
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_bc2bx")
-text = "You WIn!!"
+theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER"
 horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bc2bx")
+text = "You Survived For : 11 Minutes 20 Seconds"
 
 [node name="RestartButton" type="Button" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_bc2bx")
 theme_override_constants/outline_size = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_6pabp")
+theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("2_mxr41")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_bc2bx")
+theme_override_fonts/font = ExtResource("2_bc2bx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ooyig")
 text = "Main Menu"

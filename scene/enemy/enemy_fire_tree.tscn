@@ -1,0 +1,201 @@
+[gd_scene load_steps=27 format=3 uid="uid://c2vrvwh3u6xth"]
+
+[ext_resource type="Texture2D" uid="uid://bbqb2wei35f4b" path="res://texture/enemy_shooter4-Sheet.png" id="1_1iwpm"]
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_cgkwf"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="2_cgkwf"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="3_1dlh1"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="4_eaq3u"]
+[ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="5_rjxkv"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="6_g3q6g"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="7_7fwhn"]
+[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/enemy_bullet.tscn" id="7_cgkwf"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="8_jxug3"]
+[ext_resource type="PackedScene" uid="uid://dq888886fyp1x" path="res://scene/buff_aura_component.tscn" id="9_4cw83"]
+[ext_resource type="Resource" uid="uid://ctrrad2stctd2" path="res://resource/debuffs/attack_up2.tres" id="10_xp1n5"]
+[ext_resource type="Texture2D" uid="uid://bxyy88qsq0bo4" path="res://texture/shadow.png" id="13_1dlh1"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="14_hwgo3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idmdd"]
+radius = 13.038404
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qunvx"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e27y1"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef1of"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1yvn"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ichs0"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4454"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5mtl"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkxc1"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evo3b"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7xus"]
+atlas = ExtResource("1_1iwpm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcaqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qunvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e27y1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef1of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1yvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ichs0")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4454")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5mtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkxc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evo3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7xus")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 8.0
+}]
+
+[node name="EnemyFireTree" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+scale = Vector2(1.4, 1.4)
+collision_mask = 0
+script = ExtResource("1_cgkwf")
+stats = NodePath("Stats")
+is_buffer = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_idmdd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fcaqb")
+animation = &"swimming"
+frame = 1
+frame_progress = 0.1336652
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHurtbox"]
+polygon = PackedVector2Array(-2, -4, -1, -17, -9, -30, -25, -18, -9, 1, -8, 10, -23, 15, -15, 22, -1, 26, -10, 17, 4, 12, 9, 19, 9, 8, 20, 11, 17, 19, 24, 15, 26, -4, 9, 3)
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_cgkwf")
+base_max_health = 120.0
+base_defense = 4.0
+base_attack = 12.0
+base_move_speed = 135.0
+base_projectile_speed = 330.0
+base_fire_rate = 1.5
+metadata/_custom_type_script = "uid://5voq86b0plfn"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_1dlh1")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("4_eaq3u")
+stop_distance = 450.0
+next_state_on_stop = "StateShoot"
+metadata/_custom_type_script = "uid://8ih7wlplidj5"
+
+[node name="StateShoot" type="Node" parent="StateMachine"]
+script = ExtResource("5_rjxkv")
+projectile_scene = ExtResource("7_cgkwf")
+resume_chase_distance = 450.0
+metadata/_custom_type_script = "uid://dkuyuvcex0tys"
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("6_g3q6g")
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+metadata/_custom_type_script = "uid://dgkq2qdinr5ur"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -65.0
+offset_right = 17.0
+offset_bottom = -25.0
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("7_7fwhn")
+metadata/_custom_type_script = "uid://b21n7garto5js"
+
+[node name="SoftCollision" parent="." instance=ExtResource("8_jxug3")]
+
+[node name="BuffAuraComponent" parent="." instance=ExtResource("9_4cw83")]
+status_effect = ExtResource("10_xp1n5")
+radius = 106.0
+outline_color = Color(0.99726075, 0.4786982, 0.42507696, 0.6)
+
+[node name="CollisionShape2D" parent="BuffAuraComponent" index="0"]
+debug_color = Color(0.8945069, 0.2853912, 0.393444, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52156866)
+position = Vector2(3.7857132, 28.571426)
+scale = Vector2(1.2366071, 1)
+texture = ExtResource("13_1dlh1")
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("sprite_to_effect") instance=ExtResource("14_hwgo3")]
+sprite_to_effect = NodePath("../AnimatedSprite2D")
+
+[editable path="BuffAuraComponent"]

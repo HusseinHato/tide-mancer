@@ -107,7 +107,7 @@ func take_damage(raw_damage: float, type: String) -> void:
 	# Defense Mitigation
 	# defense = 0 => 100% Damage, Defense = 100 => 50%, etc.
 	if type == "normal" or type == "critical":
-		var def_factor := 100.0 / (100.0 + get_defense())
+		var def_factor := 100.0 / (100.0 + get_defense() + 0.0001)
 		dmg = raw_damage * def_factor
 	
 		# Damage Taken Multipliers from debuffs/buffs

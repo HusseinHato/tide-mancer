@@ -11,5 +11,5 @@ name = "Muscular Bulk"
 description = "Increase your max health by 20
 "
 icon = ExtResource("1_1oktw")
-max_level = 7
+max_level = 10
 metadata/_custom_type_script = "uid://757bfco0340e"

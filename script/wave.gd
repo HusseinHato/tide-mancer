@@ -20,7 +20,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	animated_sprite.play("default")
-	SoundManager.play_world_sfx(wave_sound, global_position, -13.0)
+	SoundManager.play_world_sfx(wave_sound, global_position, -11.0)
 	
 	randomize()
 	

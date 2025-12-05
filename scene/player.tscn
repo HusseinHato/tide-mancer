@@ -76,13 +76,14 @@ shape = SubResource("CapsuleShape2D_hp4bs")
 debug_color = Color(0.9522925, 5.7756904e-07, 0.5618319, 0.41960785)
 
 [node name="Weapon" type="Node2D" parent="."]
+position = Vector2(24, -6)
 script = ExtResource("8_2fvbb")
 weapon_data = ExtResource("9_ml7e8")
 gun_shot = ExtResource("8_34jf3")
 critical_gun_shot = ExtResource("9_34jf3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapon"]
-position = Vector2(0, -9)
+position = Vector2(0, -7)
 texture = ExtResource("8_g2vtq")
 
 [node name="Muzzle" type="Marker2D" parent="Weapon/Sprite2D"]

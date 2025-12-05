@@ -9,5 +9,5 @@ id = &"pierce_upgrade"
 name = "Unstoppable Bullet"
 description = "Increase pierce count by 1"
 icon = ExtResource("1_06330")
-max_level = 4
+max_level = 6
 metadata/_custom_type_script = "uid://dhl0mmqme53by"

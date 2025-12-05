@@ -9,5 +9,5 @@ id = &"evasion"
 name = "Blurry"
 description = "Increase Evasion by 10%"
 icon = ExtResource("1_ggsdi")
-max_level = 4
+max_level = 8
 metadata/_custom_type_script = "uid://m2fpccaca84f"

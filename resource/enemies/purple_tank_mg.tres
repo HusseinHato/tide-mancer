@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://cucsuh0uaycnx"]
+
+[ext_resource type="PackedScene" uid="uid://becjgmbvkdigi" path="res://scene/enemy/enemy_ranged_tank.tscn" id="1_2jeno"]
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_lycxy"]
+
+[resource]
+script = ExtResource("1_lycxy")
+scene = ExtResource("1_2jeno")
+unlock_time = 480.0
+weight = 1.5
+metadata/_custom_type_script = "uid://c7xnvkxd2yajl"

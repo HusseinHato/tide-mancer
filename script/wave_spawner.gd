@@ -12,6 +12,8 @@ class_name WaveSpawner
 @export var max_radius: float = 400.0
 @export var min_distance_between_areas: float = 435.0
 
+var can_spawn: bool = false
+
 const MAX_ATTEMPTS := 25
 
 var _active_areas: Array[Area2D] = []
@@ -24,6 +26,9 @@ func _ready() -> void:
 	_timer.start()
 
 func _on_spawn_timeout() -> void:
+	if !can_spawn:
+		return
+	
 	_active_areas = _active_areas.filter(func(a): return is_instance_valid(a))
 	
 	if _active_areas.size() >= max_areas:

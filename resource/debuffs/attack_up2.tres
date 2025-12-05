@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="IncreaseAttackEffect" load_steps=3 format=3 uid="uid://ctrrad2stctd2"]
+
+[ext_resource type="Texture2D" uid="uid://dlc1tvh8vkn1" path="res://texture/attack_up.png" id="1_kry1x"]
+[ext_resource type="Script" uid="uid://d0xg5pjmbkcs1" path="res://resource/debuffs/increase_attack.gd" id="1_mhdhr"]
+
+[resource]
+script = ExtResource("1_mhdhr")
+attack_delta = 5.0
+id = &"attack_up2"
+is_buff = true
+icon = ExtResource("1_kry1x")
+duration = 6.0
+tick_interval = 999999.0
+max_stacks = 3
+metadata/_custom_type_script = "uid://d0xg5pjmbkcs1"

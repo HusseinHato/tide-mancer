@@ -1,0 +1,168 @@
+[gd_scene load_steps=4 format=3 uid="uid://c62kr61utmbx6"]
+
+[ext_resource type="Script" uid="uid://c7ge01sfqqbbj" path="res://script/pause_menu.gd" id="1_grdc7"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="2_cq4tv"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="3_ug2vv"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_grdc7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09998604, 0.099985994, 0.09998598, 0.7294118)
+
+[node name="Container" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="CenterContainer" parent="Control/Container/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Container/HBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 144
+theme_override_constants/margin_top = 144
+theme_override_constants/margin_right = 144
+theme_override_constants/margin_bottom = 144
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Container/HBoxContainer/Buttons/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Resume" type="Button" parent="Control/Container/HBoxContainer/Buttons/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_cq4tv")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Control/Container/HBoxContainer/Buttons/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("2_cq4tv")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="Control/Container/HBoxContainer/Buttons/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+theme_override_styles/normal = ExtResource("2_cq4tv")
+text = "Main Menu"
+
+[node name="Stats" type="CenterContainer" parent="Control/Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Container/HBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Container/HBoxContainer/Stats/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StatsInfo" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+theme_override_font_sizes/font_size = 19
+text = "Stats Information"
+
+[node name="MaxHealth" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Max Health: 100"
+
+[node name="Defense" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Defense :"
+
+[node name="Attack" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Attack Damage :"
+
+[node name="Evasion" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Evasion :"
+
+[node name="MoveSpeed" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Movement Speed :"
+
+[node name="CriticalChance" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Critical Chance :"
+
+[node name="CriticalDamage" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Critical Damage :"
+
+[node name="ProjectileSize" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Projectile Size :"
+
+[node name="FireRate" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Attack Speed :"
+
+[node name="ProjectileCount" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Projectile Count :"
+
+[node name="PiercingCount" type="Label" parent="Control/Container/HBoxContainer/Stats/CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ug2vv")
+text = "Piercing Count :"

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_ep4l6")
 id = &"projectile_count_upgrade"
-name = "Shadow Clone Bullet"
+name = "Clone Bullet"
 description = "Increase your projectile count by 1"
 icon = ExtResource("1_lqybt")
-max_level = 4
+max_level = 5
 metadata/_custom_type_script = "uid://dtle5u5ttqmxp"

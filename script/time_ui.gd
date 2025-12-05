@@ -26,3 +26,9 @@ func _update_timer_display() -> void:
 
 func _on_game_over() -> void:
 	is_running = false
+
+func get_time_elapsed() -> Array[int]:
+	var minutes: int = floor(time_elapsed / 60)
+	var seconds: int = int(time_elapsed) % 60
+
+	return  [minutes, seconds]

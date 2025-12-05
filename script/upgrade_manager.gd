@@ -4,9 +4,13 @@ class_name UpgradeManager
 @export var available_upgrades: Array[UpgradeData] = []
 @export var upgrade_ui: UpgradeUI
 @export var player: Player
-#@export var level_up_sound: AudioStream
+
+@export var collected_upgrades_container: HBoxContainer
+@export var upgrade_badge_scene: PackedScene
 
 var _upgrade_levels: Dictionary = {}
+var _active_badges: Dictionary = {}
+
 var stats: Stats
 var _pending_upgrades: int = 0
 
@@ -73,9 +77,29 @@ func _on_upgrade_selected(upgrade: UpgradeData) -> void:
 	
 	print("Upgrade chosen: %s (level %d)" % [upgrade.name, new_level])
 	
+	_update_hud_badge(upgrade, new_level)
+	
 	_pending_upgrades -= 1
 	
 	if _pending_upgrades > 0:
 		_show_upgrade_options()
 	else:
 		upgrade_ui.close()
+
+# Helper function to handle the UI logic
+func _update_hud_badge(upgrade: UpgradeData, level: int) -> void:
+	if not collected_upgrades_container or not upgrade_badge_scene:
+		return
+
+	# If we already have a badge for this upgrade, just update the number
+	if _active_badges.has(upgrade.id):
+		var existing_badge = _active_badges[upgrade.id]
+		existing_badge.update_level(level)
+	else:
+		# Otherwise, create a new badge
+		var new_badge = upgrade_badge_scene.instantiate()
+		collected_upgrades_container.add_child(new_badge)
+		new_badge.set_data(upgrade, level)
+		
+		# Store reference for next time
+		_active_badges[upgrade.id] = new_badge

@@ -1,0 +1,174 @@
+[gd_scene load_steps=23 format=3 uid="uid://cqetwdc56o0eg"]
+
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_1jykm"]
+[ext_resource type="Texture2D" uid="uid://ck4asgx5ordek" path="res://texture/enemy_shooter2-Sheet.png" id="2_gtty4"]
+[ext_resource type="Texture2D" uid="uid://bxyy88qsq0bo4" path="res://texture/shadow.png" id="3_otbyq"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="4_55n24"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="5_btlpd"]
+[ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="6_dutrp"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="7_c57qu"]
+[ext_resource type="PackedScene" uid="uid://bbsv4yg5t3w61" path="res://scene/effect_bullet.tscn" id="7_gtty4"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="8_takg8"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="10_otbyq"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="11_55n24"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="12_ipfa4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u133b"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcny1"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvuwf"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dejyn"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul54g"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydj8y"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mocb1"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oww10"]
+atlas = ExtResource("2_gtty4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb3a8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u133b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcny1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvuwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dejyn")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul54g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydj8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mocb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oww10")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vblle"]
+
+[node name="EnemyRangedPoison" type="CharacterBody2D" node_paths=PackedStringArray("stats") groups=["enemy"]]
+collision_mask = 0
+script = ExtResource("1_1jykm")
+stats = NodePath("Stats")
+metadata/_custom_type_script = "uid://bsa2gqsf4n8t5"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hb3a8")
+animation = &"swimming"
+frame = 1
+frame_progress = 0.17786825
+offset = Vector2(0, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_vblle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52156866)
+position = Vector2(0, 11)
+texture = ExtResource("3_otbyq")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_55n24")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("5_btlpd")
+stop_distance = 350.0
+next_state_on_stop = "StateShoot"
+metadata/_custom_type_script = "uid://8ih7wlplidj5"
+
+[node name="StateShoot" type="Node" parent="StateMachine"]
+script = ExtResource("6_dutrp")
+projectile_scene = ExtResource("7_gtty4")
+resume_chase_distance = 350.0
+metadata/_custom_type_script = "uid://dkuyuvcex0tys"
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("7_c57qu")
+base_max_health = 30.0
+base_defense = 5.0
+base_attack = 9.0
+base_move_speed = 60.0
+base_projectile_speed = 225.0
+base_fire_rate = 1.2
+metadata/_custom_type_script = "uid://5voq86b0plfn"
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("8_takg8")
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+metadata/_custom_type_script = "uid://dgkq2qdinr5ur"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -82.0
+offset_right = 23.0
+offset_bottom = -42.0
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHurtbox"]
+polygon = PackedVector2Array(10, -14, 22, -10, 23, -4, 17, -4, 10, -4, 14, 5, 11, 8, -3, 0, -7, 1, -7, 7, -18, 2, -24, -7, -18, -12, -14, -3, -11, -9, -7, -18, 7, -29, 2, -35, -4, -32, -10, -33, -9, -38, -4, -42, 6, -43, 14, -38, 14, -26, 8, -17)
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("10_otbyq")
+metadata/_custom_type_script = "uid://b21n7garto5js"
+
+[node name="SoftCollision" parent="." instance=ExtResource("11_55n24")]
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("sprite_to_effect") instance=ExtResource("12_ipfa4")]
+sprite_to_effect = NodePath("../AnimatedSprite2D")

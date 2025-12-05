@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq888886fyp1x"]
+
+[ext_resource type="Script" uid="uid://bj4888736wx3c" path="res://script/buff_aura_component.gd" id="1_b8kou"]
+[ext_resource type="Resource" uid="uid://dkalduco2bco3" path="res://resource/debuffs/haste_2.tres" id="2_hny4y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_je41w"]
+radius = 120.0
+
+[node name="BuffAuraComponent" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_b8kou")
+status_effect = ExtResource("2_hny4y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_je41w")
+debug_color = Color(0.5916044, 0.53255135, 0.36186847, 0.41960785)
+
+[node name="ApplyBuffTimer" type="Timer" parent="."]
+autostart = true

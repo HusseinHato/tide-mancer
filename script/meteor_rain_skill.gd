@@ -4,9 +4,9 @@ class_name MeteorRainSkill
 @export var meteor_scene: PackedScene
 @export var stats: Stats
 
-@export var damage_per_level: PackedFloat64Array = [10.0, 12.0, 14.0, 16.0]
+@export var damage_per_level: PackedFloat64Array = [16.0, 20.0, 24.0, 28.0]
 @export var meteors_per_burst_per_level: PackedInt32Array = [1, 2, 3, 4]
-@export var cooldown_per_level: PackedFloat64Array = [3.6, 2.8, 2.0, 1.2]
+@export var cooldown_per_level: PackedFloat64Array = [3.4, 2.6, 1.8, 1.0]
 
 @export var max_level: int = 4
 @export var evolve_on_level: int = 4
@@ -53,11 +53,11 @@ func _on_timer_timeout() -> void:
 	var dmg := damage_per_level[min(idx, damage_per_level.size() - 1)]
 	
 	for i in count:
-		_spawn_meteor(dmg)
+		_spawn_meteor(dmg + stats.get_attack())
 
 func _spawn_meteor(dmg: float) -> void:
 	var meteor: Meteor = meteor_scene.instantiate()
-	meteor.damage = dmg * (stats.get_attack() / 10)
+	meteor.damage = dmg
 	meteor.fall_speed += (stats.get_projectile_speed() / 2)
 	meteor.size += (stats.bonus_projectile_size - 1.0)
 	meteor.piercing_count += stats.get_piercing_count()
@@ -80,4 +80,4 @@ func _evolve() -> void:
 	print("MeteorRain evolved!")
 	# Example: double meteors per burst
 	if meteors_per_burst_per_level.size() >= level:
-		meteors_per_burst_per_level[level - 1] += 2
+		meteors_per_burst_per_level[level - 1] += 3

@@ -18,6 +18,8 @@ class_name EnemySpawner
 @export var max_enemies_alive: int = 300
 
 var _elapsed: float = 0.0
+var can_spawn = false
+
 @onready var _timer: Timer = $Timer
 
 func _ready() -> void:
@@ -46,7 +48,8 @@ func _on_spawn_tick() -> void:
 		wave_count = min(wave_count, allowed)
 	
 	if wave_count > 0:
-		_spawn_wave(wave_count)
+		if can_spawn:
+			_spawn_wave(wave_count)
 	
 	_timer.start(new_interval)
 

@@ -4,15 +4,16 @@ class_name Enemy
 signal enemy_died
 
 @onready var animated_sprite2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var death_component = $DeathComponent
 
 @export var stats: Stats
 @export var speed: float = 70.0
 @export var acceleration: float = 370.0
 @export var friction: float = 670.0
-@export var hp_per_minute: float = 40
+@export var hp_per_minute: float = 50
 @export var defense_per_minute: float = 4
-@export var attack_per_minute: = 3
-@export var move_speed_per_minute: float = 2.0
+@export var attack_per_minute: = 4
+@export var move_speed_per_minute: float = 4
 @export var is_buffer: bool = false
 
 var player: Player
@@ -51,4 +52,4 @@ func _die() -> void:
 	is_dying = true
 	enemy_died.emit()
 	
-	queue_free()
+	death_component.activate_death()

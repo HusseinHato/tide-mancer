@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_0gfwt")
 attack_delta = 7.0
+id = &"attack_up"
 is_buff = true
 icon = ExtResource("1_bxjxw")
 duration = 7.0

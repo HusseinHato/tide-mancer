@@ -1,14 +1,15 @@
-[gd_scene load_steps=47 format=4 uid="uid://bhlp3r8w6ch5f"]
+[gd_scene load_steps=59 format=4 uid="uid://bhlp3r8w6ch5f"]
 
 [ext_resource type="PackedScene" uid="uid://8qs7ip8igu6" path="res://scene/player.tscn" id="1_amuwk"]
 [ext_resource type="Script" uid="uid://da3lhmji2gndk" path="res://script/sea_stage.gd" id="1_p26xr"]
 [ext_resource type="Texture2D" uid="uid://20x6fnv0x030" path="res://texture/sea01.png" id="1_usqvo"]
+[ext_resource type="AudioStream" uid="uid://buykbwj2mc4j0" path="res://sounds/TideMancerMainTHeme.mp3" id="2_612qk"]
 [ext_resource type="Texture2D" uid="uid://6da1k0dlcxfe" path="res://texture/border_rock-Sheet.png" id="2_gjc0r"]
+[ext_resource type="PackedScene" uid="uid://da6chno4ljqaw" path="res://scene/iris_transition.tscn" id="3_r0r2w"]
 [ext_resource type="PackedScene" uid="uid://dpfpdggskawum" path="res://scene/wave_spawner.tscn" id="3_tl4r4"]
 [ext_resource type="Texture2D" uid="uid://bwbaya3c1c7jn" path="res://texture/health_under.png" id="4_qunxv"]
 [ext_resource type="Script" uid="uid://0d8jmhsspxfm" path="res://script/health_ui.gd" id="4_rrha4"]
 [ext_resource type="Texture2D" uid="uid://dad66j0be77cn" path="res://texture/health_overr.png" id="5_3vh3h"]
-[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="6_ns8sg"]
 [ext_resource type="Script" uid="uid://bvtrn326u7j11" path="res://script/experience_ui.gd" id="7_28ibn"]
 [ext_resource type="Texture2D" uid="uid://s3w65r7vy2pf" path="res://texture/exp_bar_under.png" id="7_simt7"]
 [ext_resource type="Script" uid="uid://bujvu6wfgj0y2" path="res://script/exp_object_manager.gd" id="7_tl4r4"]
@@ -23,8 +24,12 @@
 [ext_resource type="Resource" uid="uid://1swibk2qyypr" path="res://resource/upgrades/health_upgrade.tres" id="13_a77dk"]
 [ext_resource type="Resource" uid="uid://bql4igohg55bs" path="res://resource/upgrades/meteor_upgrade.tres" id="14_33lt2"]
 [ext_resource type="PackedScene" uid="uid://dxkvj0ltayu8i" path="res://scene/enemy_spawner.tscn" id="15_66x4v"]
+[ext_resource type="Texture2D" uid="uid://0rr3wdyss7wh" path="res://texture/QButton.png" id="16_p5af1"]
 [ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="16_uvbp1"]
+[ext_resource type="Script" uid="uid://cevkqsxwyerrr" path="res://script/guide.gd" id="17_errnf"]
 [ext_resource type="Resource" uid="uid://dpgiqquw03n12" path="res://resource/enemies/green_sea_snake.tres" id="17_g4t8o"]
+[ext_resource type="Texture2D" uid="uid://daqveyhqcs1oj" path="res://texture/switch.png" id="17_tlgu6"]
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="18_errnf"]
 [ext_resource type="Resource" uid="uid://dfef21nrq7mtb" path="res://resource/enemies/green_dunkleosteus.tres" id="18_uvbp1"]
 [ext_resource type="Resource" uid="uid://n6su2kryhk63" path="res://resource/upgrades/fire_rate_upgrade.tres" id="22_myvl3"]
 [ext_resource type="Resource" uid="uid://b0i338gyu3xnt" path="res://resource/upgrades/projectile_size_upgrade.tres" id="23_2lall"]
@@ -40,8 +45,15 @@
 [ext_resource type="Resource" uid="uid://b5y8o824cen8l" path="res://resource/upgrades/defense_upgrade.tres" id="30_b1s3k"]
 [ext_resource type="PackedScene" uid="uid://becwtdpvqaxov" path="res://scene/game_over.tscn" id="31_myvl3"]
 [ext_resource type="AudioStream" uid="uid://bxx8tuund2moo" path="res://sounds/level_up.wav" id="31_wcy4k"]
+[ext_resource type="PackedScene" uid="uid://dcm5ra6aatm6" path="res://scene/upgrade_badge.tscn" id="36_errnf"]
 [ext_resource type="PackedScene" uid="uid://b8viwgkasme8v" path="res://scene/wave.tscn" id="37_mippi"]
 [ext_resource type="Resource" uid="uid://bignitp16tca" path="res://resource/enemies/white_tree.tres" id="41_wcy4k"]
+[ext_resource type="Resource" uid="uid://drh5uj3luv6qo" path="res://resource/enemies/flying_fire_tree.tres" id="43_7oa2p"]
+[ext_resource type="Resource" uid="uid://cwn3yu7iq2svk" path="res://resource/enemies/purple_sea_dragon.tres" id="43_svq5q"]
+[ext_resource type="Resource" uid="uid://cucsuh0uaycnx" path="res://resource/enemies/purple_tank_mg.tres" id="44_7oa2p"]
+[ext_resource type="Script" uid="uid://bdobgsoaatgqs" path="res://script/label_start_game.gd" id="46_ayx8o"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="46_sbjq5"]
+[ext_resource type="PackedScene" uid="uid://c62kr61utmbx6" path="res://scene/pause_menu.tscn" id="48_rs4qh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_usqvo"]
 texture = ExtResource("1_usqvo")
@@ -73,6 +85,7 @@ sources/0 = SubResource("TileSetAtlasSource_wc2tx")
 
 [node name="Sea" type="Node2D"]
 script = ExtResource("1_p26xr")
+bgm_music = ExtResource("2_612qk")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(80, 197)
@@ -131,7 +144,7 @@ offset_left = 37.0
 offset_top = 36.0
 offset_right = 85.0
 offset_bottom = 59.0
-theme = ExtResource("6_ns8sg")
+theme_override_fonts/font = ExtResource("46_sbjq5")
 text = "HP:"
 
 [node name="NumericalIndicator" type="Label" parent="CanvasLayer/HealthRelated"]
@@ -140,7 +153,7 @@ offset_left = 180.0
 offset_top = 39.0
 offset_right = 312.0
 offset_bottom = 62.0
-theme = ExtResource("6_ns8sg")
+theme_override_fonts/font = ExtResource("46_sbjq5")
 theme_override_font_sizes/font_size = 11
 text = "100/200"
 horizontal_alignment = 1
@@ -179,7 +192,7 @@ offset_top = -52.0
 offset_right = 100.0
 offset_bottom = -29.0
 grow_vertical = 0
-theme = ExtResource("6_ns8sg")
+theme_override_fonts/font = ExtResource("46_sbjq5")
 text = "Lv. 1"
 
 [node name="TimerRelated" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
@@ -199,32 +212,144 @@ layout_mode = 0
 offset_top = 28.0
 offset_right = 128.0
 offset_bottom = 51.0
-theme = ExtResource("6_ns8sg")
+theme_override_fonts/font = ExtResource("46_sbjq5")
 text = "01:23:45"
+
+[node name="Guide" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_errnf")
+
+[node name="Q Button" type="TextureRect" parent="CanvasLayer/Guide"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -111.0
+offset_top = 40.0
+offset_right = -71.0
+offset_bottom = 80.0
+grow_horizontal = 0
+texture = ExtResource("16_p5af1")
+
+[node name="Switch" type="TextureRect" parent="CanvasLayer/Guide"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -186.0
+offset_top = 25.0
+offset_right = -122.0
+offset_bottom = 89.0
+grow_horizontal = 0
+texture = ExtResource("17_tlgu6")
+
+[node name="SwitchWeapon" type="Label" parent="CanvasLayer/Guide"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 101.0
+offset_right = -11.0
+offset_bottom = 128.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("18_errnf")
+theme_override_font_sizes/font_size = 24
+text = "Press Q to Switch Weapon"
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Guide"]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="UpgradesHud" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UpgradesHud"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -43.0
+offset_right = 20.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -47
 
 [node name="ExperienceManager" type="Node" parent="."]
 script = ExtResource("8_1y8c8")
 
-[node name="UpgradeManager" type="Node" parent="." node_paths=PackedStringArray("upgrade_ui", "player")]
+[node name="UpgradeManager" type="Node" parent="." node_paths=PackedStringArray("upgrade_ui", "player", "collected_upgrades_container")]
 script = ExtResource("9_psc0b")
 available_upgrades = Array[ExtResource("10_6823s")]([ExtResource("11_r0r4p"), ExtResource("12_1f8tb"), ExtResource("13_a77dk"), ExtResource("14_33lt2"), ExtResource("22_myvl3"), ExtResource("23_2lall"), ExtResource("24_rwi4g"), ExtResource("25_ep3b6"), ExtResource("27_r8v3n"), ExtResource("28_b1s3k"), ExtResource("29_t24ux"), ExtResource("30_b1s3k")])
 upgrade_ui = NodePath("../UpgradeUI")
 player = NodePath("../Entities/Player")
+collected_upgrades_container = NodePath("../CanvasLayer/UpgradesHud/HBoxContainer")
+upgrade_badge_scene = ExtResource("36_errnf")
 
 [node name="UpgradeUI" parent="." instance=ExtResource("10_poequ")]
-visible = false
 level_up_sound = ExtResource("31_wcy4k")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_66x4v")]
 player = NodePath("../Entities/Player")
-enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv"), ExtResource("26_fc43f"), ExtResource("29_p26xr"), ExtResource("41_wcy4k")])
+enemy_configs = Array[ExtResource("16_uvbp1")]([ExtResource("17_g4t8o"), ExtResource("18_uvbp1"), ExtResource("24_we7s2"), ExtResource("24_diltv"), ExtResource("26_fc43f"), ExtResource("29_p26xr"), ExtResource("41_wcy4k"), ExtResource("43_svq5q"), ExtResource("43_7oa2p"), ExtResource("44_7oa2p")])
+base_spawn_interval = 2.0
 min_spawn_interval = 1.0
 spawn_interval_decay_per_sec = 0.01
 base_enemies_per_wave = 2
-max_enemies_per_wave = 6
+max_enemies_per_wave = 10
 enemies_per_minute_growth = 1.25
-max_enemies_alive = 120
+max_enemies_alive = 250
 
-[node name="GameOver" parent="." instance=ExtResource("31_myvl3")]
+[node name="LabelStartGame" type="CanvasLayer" parent="."]
+script = ExtResource("46_ayx8o")
+
+[node name="Control" type="Control" parent="LabelStartGame"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StartLabel" type="Label" parent="LabelStartGame/Control"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 197.0
+offset_right = 12.0
+offset_bottom = 213.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("46_sbjq5")
+theme_override_font_sizes/font_size = 32
+text = "1 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IrisTransition" parent="." instance=ExtResource("3_r0r2w")]
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("player") instance=ExtResource("48_rs4qh")]
+player = NodePath("../Entities/Player")
+
+[node name="GameOver" parent="." node_paths=PackedStringArray("timer_related") instance=ExtResource("31_myvl3")]
+unique_name_in_owner = true
+timer_related = NodePath("../CanvasLayer/TimerRelated")

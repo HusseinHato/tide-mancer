@@ -10,5 +10,5 @@ id = &"defense"
 name = "Thick Skin"
 description = "Increase Defense by 17 points"
 icon = ExtResource("1_v6ma1")
-max_level = 5
+max_level = 8
 metadata/_custom_type_script = "uid://bd6kxfgdxmcvx"

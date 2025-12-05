@@ -10,5 +10,5 @@ id = &"crit_dmg"
 name = "Bonking Damage"
 description = "Increase Critical damage by 50%"
 icon = ExtResource("1_1cd48")
-max_level = 5
+max_level = 7
 metadata/_custom_type_script = "uid://cns5r878dlsnx"

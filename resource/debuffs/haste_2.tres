@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://sknu68wk78wo" path="res://texture/haste.png" id="1_ym576"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_tvaeb")
 move_speed_delta = 20.0
 id = &"haste_2"

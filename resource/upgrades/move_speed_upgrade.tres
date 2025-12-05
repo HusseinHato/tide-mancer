@@ -10,5 +10,5 @@ id = &"move_speed_upgrade"
 name = "Fast Foot"
 description = "Increase Move Speed by 20 points."
 icon = ExtResource("1_tirt0")
-max_level = 6
+max_level = 7
 metadata/_custom_type_script = "uid://1e8rfh0v7u71"

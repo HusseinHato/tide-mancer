@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_8ahen")
-attack_per_level = 6.0
+attack_per_level = 7.0
 id = &"upgrade_attack"
 name = "Sharpen"
-description = "Increase your attack damage by 6"
+description = "Increase your attack damage by 7"
 icon = ExtResource("1_mcpfw")
-max_level = 7
+max_level = 11
 metadata/_custom_type_script = "uid://cf6ii50vxa8ox"

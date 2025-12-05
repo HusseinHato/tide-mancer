@@ -3,6 +3,7 @@ extends Node
 var num_players: int = 12
 var num_players_2d: int = 32
 var default_bus: String = "SFX"
+var music_bus: String = "Music" # New config for Music Bus
 
 var available_players: Array[AudioStreamPlayer] = []
 var queue: Array[AudioStreamPlayer] = []
@@ -13,7 +14,12 @@ var queue_2d: Array[AudioStreamPlayer2D] = []
 var sound_cooldowns: Dictionary = {}
 const SAME_SOUND_LIMIT_MS: int = 50
 
+var music_player: AudioStreamPlayer
+var music_tween: Tween
+
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	for i in range(num_players):
 		var p = AudioStreamPlayer.new()
 		add_child(p)
@@ -30,6 +36,75 @@ func _ready() -> void:
 		
 		p.max_distance = 1300
 		p.attenuation = 1.5
+	
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+	music_player.bus = music_bus
+
+# --- Volume Settings (NEW) ---
+# value: 0.0 to 1.0 (Linear). We convert this to Decibels automatically.
+func change_volume(bus_name: String, value: float) -> void:
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	if bus_index == -1:
+		push_warning("SoundManager: Bus '%s' not found." % bus_index)
+		return
+	
+	if value <= 0.05:
+		AudioServer.set_bus_mute(bus_index, true)
+	else:
+		AudioServer.set_bus_mute(bus_index, false)
+		# linear_to_db converts 0.5 to -6dB, etc
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+
+# Gets the current linear volume (0.0 to 1.0) for UI sliders
+func get_volume(bus_name: String) -> float:
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	if bus_index == -1: return 1.0
+	
+	if AudioServer.is_bus_mute(bus_index):
+		return 0.0
+	
+	var db = AudioServer.get_bus_volume_db(bus_index)
+	return db_to_linear(db)
+
+# --- MUSIC FUNCTIONS (NEW) ---
+
+func play_music(stream: AudioStream, volume_db: float = 0.0, fade_duration: float = 1.0):
+	if stream == null: return
+	
+	# If the same song is already playing, just ensure volume is correct
+	if music_player.stream == stream and music_player.playing:
+		unduck_music(volume_db, 0.5)
+		return
+
+	# If a different song is playing, or nothing is playing
+	music_player.stream = stream
+	music_player.volume_db = -80 # Start silent
+	music_player.play()
+	
+	_tween_music_volume(volume_db, fade_duration)
+
+func stop_music(fade_duration: float = 1.0):
+	# Fade out then stop
+	if music_tween: music_tween.kill()
+	music_tween = create_tween()
+	music_tween.tween_property(music_player, "volume_db", -80.0, fade_duration)
+	music_tween.tween_callback(music_player.stop)
+
+# Call this when Upgrade Screen opens
+func duck_music(target_db: float = -15.0, duration: float = 0.5):
+	_tween_music_volume(target_db, duration)
+
+# Call this when Upgrade Screen closes
+func unduck_music(target_db: float = 0.0, duration: float = 0.5):
+	_tween_music_volume(target_db, duration)
+
+func _tween_music_volume(target_db: float, duration: float):
+	if music_tween: music_tween.kill()
+	music_tween = create_tween()
+	# TransitionType.TRANS_SINE makes it sound smoother
+	music_tween.set_trans(Tween.TRANS_SINE) 
+	music_tween.tween_property(music_player, "volume_db", target_db, duration)
 
 func play_sfx_2d(stream: AudioStream, global_pos: Vector2, pitch_min: float = 0.9, pitch_max: float = 1.1, volume_db: float = 0.0, specific_bus: String = "") -> void:
 	if stream == null: 

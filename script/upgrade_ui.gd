@@ -15,6 +15,8 @@ func _ready() -> void:
 	visible = false
 
 func show_choices(choices: Array[UpgradeData]) -> void:
+	SoundManager.duck_music(-18.0)
+	
 	_is_open = true
 	visible = true
 	
@@ -32,7 +34,6 @@ func show_choices(choices: Array[UpgradeData]) -> void:
 		
 		card.clicked.connect(_on_option_pressed)
 		card.set_data(upgrade)
-		
 	
 func _clear_options() -> void:
 	for child in options_container.get_children():
@@ -50,3 +51,4 @@ func close() -> void:
 	_is_open = false
 	visible = false
 	get_tree().paused = false
+	SoundManager.unduck_music(-10.0)

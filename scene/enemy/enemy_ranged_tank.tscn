@@ -1,0 +1,167 @@
+[gd_scene load_steps=22 format=3 uid="uid://becjgmbvkdigi"]
+
+[ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_aomfr"]
+[ext_resource type="Texture2D" uid="uid://tyg310e0qpg2" path="res://texture/enemy_shooter5-Sheet.png" id="2_whq88"]
+[ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="3_g3h6i"]
+[ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="4_3h5r7"]
+[ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_enag7"]
+[ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_0akjb"]
+[ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="7_re6qi"]
+[ext_resource type="PackedScene" uid="uid://bbsv4yg5t3w61" path="res://scene/effect_bullet.tscn" id="8_e1hj3"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="9_uexig"]
+[ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="10_1lkhv"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="11_p51ij"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ltes"]
+atlas = ExtResource("2_whq88")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aq4u"]
+atlas = ExtResource("2_whq88")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pr7i"]
+atlas = ExtResource("2_whq88")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a03v"]
+atlas = ExtResource("2_whq88")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iwut"]
+atlas = ExtResource("2_whq88")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsxt2"]
+atlas = ExtResource("2_whq88")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt806"]
+atlas = ExtResource("2_whq88")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5jgq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ltes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aq4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pr7i")
+}],
+"loop": true,
+"name": &"attacking",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a03v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iwut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsxt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt806")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivvgv"]
+radius = 18.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0cbfh"]
+radius = 22.0
+height = 58.0
+
+[node name="EnemyRangedTank" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+scale = Vector2(1.8, 1.8)
+collision_mask = 0
+script = ExtResource("1_aomfr")
+stats = NodePath("Stats")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5jgq5")
+animation = &"attacking"
+frame = 2
+frame_progress = 0.046790678
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ivvgv")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("3_g3h6i")
+base_max_health = 850.0
+base_defense = 20.0
+base_attack = 8.0
+base_move_speed = 30.0
+base_projectile_speed = 450.0
+base_fire_rate = 2.0
+metadata/_custom_type_script = "uid://5voq86b0plfn"
+
+[node name="StatusController" type="Node" parent="." node_paths=PackedStringArray("stats", "icon_container")]
+script = ExtResource("4_3h5r7")
+stats = NodePath("../Stats")
+icon_container = NodePath("../Control/HBoxContainer")
+metadata/_custom_type_script = "uid://dgkq2qdinr5ur"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_enag7")
+initial_state = NodePath("StateChase")
+metadata/_custom_type_script = "uid://doot8ojpv6tdj"
+
+[node name="StateChase" type="Node" parent="StateMachine"]
+script = ExtResource("6_0akjb")
+stop_distance = 370.0
+next_state_on_stop = "StateShoot"
+metadata/_custom_type_script = "uid://8ih7wlplidj5"
+
+[node name="StateShoot" type="Node" parent="StateMachine"]
+script = ExtResource("7_re6qi")
+projectile_scene = ExtResource("8_e1hj3")
+resume_chase_distance = 370.0
+metadata/_custom_type_script = "uid://dkuyuvcex0tys"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -64.0
+offset_right = 22.0
+offset_bottom = -24.0
+
+[node name="EnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtbox"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_0cbfh")
+debug_color = Color(0.7844486, 0.3769247, 0.5576667, 0.41960785)
+
+[node name="SoftCollision" parent="." instance=ExtResource("9_uexig")]
+
+[node name="DropComponent" type="Node" parent="."]
+script = ExtResource("10_1lkhv")
+metadata/_custom_type_script = "uid://b21n7garto5js"
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("sprite_to_effect") instance=ExtResource("11_p51ij")]
+sprite_to_effect = NodePath("../AnimatedSprite2D")
