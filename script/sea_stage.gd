@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var game_over_screen: GameOver = %GameOver
+#@onready var game_over_screen: GameOver = %GameOver
 @onready var player: Player = %Player
 @onready var start_label = %StartLabel
 @onready var enemy_spawner: EnemySpawner = $EnemySpawner
@@ -35,7 +35,7 @@ func _ready() -> void:
 	get_tree().create_timer(0.1).timeout.connect(_on_game_start)
 
 func _on_player_died() -> void:
-	game_over_screen.set_game_over(false)
+	#game_over_screen.set_game_over(false)
 	SoundManager.stop_music(2.5)
 
 func _on_game_start():

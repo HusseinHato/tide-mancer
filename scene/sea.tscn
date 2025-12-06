@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://bhlp3r8w6ch5f"]
+[gd_scene load_steps=58 format=4 uid="uid://bhlp3r8w6ch5f"]
 
 [ext_resource type="PackedScene" uid="uid://8qs7ip8igu6" path="res://scene/player.tscn" id="1_amuwk"]
 [ext_resource type="Script" uid="uid://da3lhmji2gndk" path="res://script/sea_stage.gd" id="1_p26xr"]
@@ -43,7 +43,6 @@
 [ext_resource type="Resource" uid="uid://dawa0sl8qhsen" path="res://resource/enemies/poisonus_flying_octopus.tres" id="29_p26xr"]
 [ext_resource type="Resource" uid="uid://b3ikt0hkakkeb" path="res://resource/upgrades/evasion_upgrade.tres" id="29_t24ux"]
 [ext_resource type="Resource" uid="uid://b5y8o824cen8l" path="res://resource/upgrades/defense_upgrade.tres" id="30_b1s3k"]
-[ext_resource type="PackedScene" uid="uid://becwtdpvqaxov" path="res://scene/game_over.tscn" id="31_myvl3"]
 [ext_resource type="AudioStream" uid="uid://bxx8tuund2moo" path="res://sounds/level_up.wav" id="31_wcy4k"]
 [ext_resource type="PackedScene" uid="uid://dcm5ra6aatm6" path="res://scene/upgrade_badge.tscn" id="36_errnf"]
 [ext_resource type="PackedScene" uid="uid://b8viwgkasme8v" path="res://scene/wave.tscn" id="37_mippi"]
@@ -302,6 +301,7 @@ collected_upgrades_container = NodePath("../CanvasLayer/UpgradesHud/HBoxContaine
 upgrade_badge_scene = ExtResource("36_errnf")
 
 [node name="UpgradeUI" parent="." instance=ExtResource("10_poequ")]
+visible = false
 level_up_sound = ExtResource("31_wcy4k")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_66x4v")]
@@ -346,10 +346,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IrisTransition" parent="." instance=ExtResource("3_r0r2w")]
+visible = false
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("player") instance=ExtResource("48_rs4qh")]
+visible = false
 player = NodePath("../Entities/Player")
-
-[node name="GameOver" parent="." node_paths=PackedStringArray("timer_related") instance=ExtResource("31_myvl3")]
-unique_name_in_owner = true
-timer_related = NodePath("../CanvasLayer/TimerRelated")

@@ -97,7 +97,7 @@ debug_color = Color(0.95755154, 2.5990605e-06, 0.5345746, 0.41960785)
 [node name="Stats" parent="." instance=ExtResource("3_evd3l")]
 base_max_health = 15.0
 base_defense = 5.0
-base_attack = 5.0
+base_attack = 9.0
 base_move_speed = 70.0
 base_projectile_speed = 0.0
 

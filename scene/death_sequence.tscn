@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvubwdvb1xn5w"]
+
+[ext_resource type="Script" uid="uid://b2v148pwls6ur" path="res://script/death_sequence.gd" id="1_b80o6"]
+[ext_resource type="Texture2D" uid="uid://2knfhgevy57h" path="res://texture/shrak_dead.png" id="1_xgiwt"]
+[ext_resource type="Shader" uid="uid://cxh841iij3b8m" path="res://shader/circle_shader.gdshader" id="2_kntby"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cslii"]
+shader = ExtResource("2_kntby")
+shader_parameter/circle_size = 0.0
+shader_parameter/smooth_size = 0.0
+
+[node name="DeathSequence" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_b80o6")
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cslii")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+
+[node name="CenterPoint" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="CharSprite" type="Sprite2D" parent="CenterPoint"]
+position = Vector2(16, 8)
+texture = ExtResource("1_xgiwt")
+
+[node name="UIContainer" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 84.0
+offset_right = 49.0
+offset_bottom = 134.0
+grow_horizontal = 2
+
+[node name="GameOver" type="Label" parent="UIContainer"]
+layout_mode = 2
+text = "GAME OVER!"
+
+[node name="FunnyText" type="Label" parent="UIContainer"]
+layout_mode = 2
+text = "So Bad Lulw"
+
+[node name="ContinueButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -139.0
+offset_right = 40.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"

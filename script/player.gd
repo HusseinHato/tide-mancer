@@ -7,32 +7,21 @@ signal player_dead
 @export var acceleration: float = 900.0
 @export var friction: float = 1200.0
 
-@export var weapon: Weapon
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var stats: Stats = $Stats
 
-#@export var poison_effect: PoisonEffect
-#@export var haste_effect: HasteEffect
-#@export var regen_effect: RegenEffect
-#@export var fire_rate_effect: FireRateEffect
-
+@export var weapon: Weapon
 @export var pistol_weapon: WeponData
 @export var shotgun_weapon: WeponData
+
+const DEATH_SEQUENCE_SCENE = preload("uid://bvubwdvb1xn5w")
 
 func _ready() -> void:
 	stats.health_depleted.connect(died)
 	stats.move_speed_modified.connect(recalculate_stats)
-	#haste_effect.on_haste_apply.connect(_on_haste_applied)
-	#haste_effect.on_haste_expire.connect(_on_haste_expired)
-	Events.hot_dog_picked.connect(_on_hotdog_picked)
 	
-	#if has_node("StatusController"):
-		#var controller: StatusController = get_node("StatusController")
-		#controller.apply_effect(poison_effect)
-		#controller.apply_effect(haste_effect)
-		#controller.apply_effect(regen_effect)
-		#controller.apply_effect(fire_rate_effect)
+	Events.hot_dog_picked.connect(_on_hotdog_picked)
 	
 	recalculate_stats()
 
@@ -60,8 +49,11 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func died() -> void:
+	visible = false
+	var death_sequence: DeathSequence = DEATH_SEQUENCE_SCENE.instantiate()
+	get_tree().root.add_child(death_sequence)
+	death_sequence.start_death_sequence()
 	player_dead.emit()
-	queue_free()
 
 func switch_weapon() -> void:
 	if weapon:

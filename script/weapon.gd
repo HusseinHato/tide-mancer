@@ -8,8 +8,7 @@ class_name Weapon
 @export var critical_gun_shot: AudioStream
 
 @onready var stats: Stats = get_parent().get_node("Stats")
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var muzzle: Marker2D = $Sprite2D/Muzzle
+@onready var muzzle: Marker2D = $Muzzle
 @onready var shoot_timer: Timer = $ShootTimer
 
 var can_shoot: bool = true
@@ -30,15 +29,6 @@ func _process(_delta: float) -> void:
 	var angle_to_mouse = player_pos.angle_to_point(mouse_pos)
 	
 	position = Vector2(orbit_radius, 0).rotated(angle_to_mouse)
-	
-	if rotate_weapon_sprite and sprite:
-		var direction_to_mouse := (mouse_pos - global_position).angle()
-		sprite.rotation = direction_to_mouse
-		
-		if abs(direction_to_mouse) > PI / 2:
-			sprite.flip_v = true
-		else:
-			sprite.flip_v = false
 	
 	shoot()
 
@@ -102,11 +92,11 @@ func _spawn_bullet(base_direction: Vector2, spawn_position: Vector2, bullet_inde
 		SoundManager.play_player_sfx(critical_gun_shot, -16.0)
 	else:
 		SoundManager.play_player_sfx(gun_shot, -16.0)
-	get_tree().root.add_child(bullet)
+	
+	get_parent().get_parent().add_child(bullet)
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
 
 func set_weapon_data(new_weapon_data: WeponData) -> void:
 	weapon_data = new_weapon_data
-	sprite.texture = new_weapon_data.weapon_sprite

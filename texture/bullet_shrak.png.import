@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://27a1l4s1xajt"
-path="res://.godot/imported/shrak.png-13d5b6196507c91611a540f4debc72dd.ctex"
+uid="uid://bwgrhp1f0i15o"
+path="res://.godot/imported/bullet_shrak.png-55a685c984425cd2f24f0b139f6e4de8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://texture/shrak.png"
-dest_files=["res://.godot/imported/shrak.png-13d5b6196507c91611a540f4debc72dd.ctex"]
+source_file="res://texture/bullet_shrak.png"
+dest_files=["res://.godot/imported/bullet_shrak.png-55a685c984425cd2f24f0b139f6e4de8.ctex"]
 
 [params]
 
