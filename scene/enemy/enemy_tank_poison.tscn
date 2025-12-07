@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_3mfjv"]
 [ext_resource type="Script" uid="uid://baepp6dfli6x7" path="res://script/status_effect_hitbox.gd" id="7_4kir8"]
 [ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="8_g17f8"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="9_nlbqk"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="9_nlbqk"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="10_3tjn2"]
 [ext_resource type="Script" uid="uid://bhpuklrihqyol" path="res://script/debuff_aura_component.gd" id="11_toifc"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="12_jp8y7"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="12_jp8y7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vskyd"]
 atlas = ExtResource("2_go4s1")

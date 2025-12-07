@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_g315f"]
 [ext_resource type="Texture2D" uid="uid://d336my68vhxnm" path="res://texture/enemy-normal-Sheet.png" id="2_2t5s3"]
-[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="3_evd3l"]
-[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="4_t6mqu"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/components/stats.tscn" id="3_evd3l"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/components/status_controller.tscn" id="4_t6mqu"]
 [ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_lefbf"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_bf4yq"]
 [ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_qq6kc"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="8_c7ak4"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="9_wg6ft"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="10_32515"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="9_wg6ft"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="10_32515"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x76ep"]
 atlas = ExtResource("2_2t5s3")
@@ -85,7 +85,6 @@ animation = &"swimming"
 shape = SubResource("CapsuleShape2D_qhl48")
 
 [node name="EnemyHurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 0
 

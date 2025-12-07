@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_1j3c0"]
 [ext_resource type="Texture2D" uid="uid://bplhgbsrcmpkd" path="res://texture/enemy_shoot-Sheet.png" id="2_cqyba"]
-[ext_resource type="PackedScene" uid="uid://ca84klelguglu" path="res://scene/state_machine.tscn" id="3_tn3r5"]
+[ext_resource type="PackedScene" uid="uid://ca84klelguglu" path="res://scene/components/state_machine.tscn" id="3_tn3r5"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="4_4uflw"]
 [ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="5_joacj"]
-[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/enemy_bullet.tscn" id="6_4d4x8"]
+[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/game_object/enemy_bullet.tscn" id="6_4d4x8"]
 [ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="7_vdlhy"]
-[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/status_controller.tscn" id="8_7qp8j"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/components/status_controller.tscn" id="8_7qp8j"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="9_xoysa"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="10_buy3b"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="11_7th78"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="10_buy3b"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="11_7th78"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_erxfx"]
 atlas = ExtResource("2_cqyba")

@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bsa2gqsf4n8t5" path="res://script/enemy.gd" id="1_bgkry"]
 [ext_resource type="Texture2D" uid="uid://c4p43lfrl6ih7" path="res://texture/enemy_normal2-Sheet.png" id="2_65sti"]
-[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/stats.tscn" id="3_lfrkn"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/components/stats.tscn" id="3_lfrkn"]
 [ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="4_fww7y"]
 [ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_2b1rm"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_8q52m"]
-[ext_resource type="PackedScene" uid="uid://eovq2a4l3m8k" path="res://scene/enemy_hurtbox.tscn" id="8_5soif"]
+[ext_resource type="PackedScene" uid="uid://eovq2a4l3m8k" path="res://scene/components/enemy_hurtbox.tscn" id="8_5soif"]
 [ext_resource type="Texture2D" uid="uid://bxyy88qsq0bo4" path="res://texture/shadow.png" id="9_65sti"]
 [ext_resource type="Script" uid="uid://baepp6dfli6x7" path="res://script/status_effect_hitbox.gd" id="9_lfrkn"]
 [ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="10_lfrkn"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="11_fww7y"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="12_2b1rm"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="13_dmv0i"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="12_2b1rm"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="13_dmv0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcruv"]
 atlas = ExtResource("2_65sti")

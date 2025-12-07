@@ -8,12 +8,12 @@
 [ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="5_rjxkv"]
 [ext_resource type="Script" uid="uid://dgkq2qdinr5ur" path="res://script/status_controller.gd" id="6_g3q6g"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="7_7fwhn"]
-[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/enemy_bullet.tscn" id="7_cgkwf"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="8_jxug3"]
-[ext_resource type="PackedScene" uid="uid://dq888886fyp1x" path="res://scene/buff_aura_component.tscn" id="9_4cw83"]
+[ext_resource type="PackedScene" uid="uid://cbsj7ovehe12k" path="res://scene/game_object/enemy_bullet.tscn" id="7_cgkwf"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="8_jxug3"]
+[ext_resource type="PackedScene" uid="uid://dq888886fyp1x" path="res://scene/components/buff_aura_component.tscn" id="9_4cw83"]
 [ext_resource type="Resource" uid="uid://ctrrad2stctd2" path="res://resource/debuffs/attack_up2.tres" id="10_xp1n5"]
 [ext_resource type="Texture2D" uid="uid://bxyy88qsq0bo4" path="res://texture/shadow.png" id="13_1dlh1"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="14_hwgo3"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="14_hwgo3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idmdd"]
 radius = 13.038404

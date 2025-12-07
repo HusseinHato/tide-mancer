@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_4uwsr"]
 [ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_4wk4f"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="8_ejsyy"]
-[ext_resource type="PackedScene" uid="uid://dq888886fyp1x" path="res://scene/buff_aura_component.tscn" id="9_m7wa4"]
+[ext_resource type="PackedScene" uid="uid://dq888886fyp1x" path="res://scene/components/buff_aura_component.tscn" id="9_m7wa4"]
 [ext_resource type="Texture2D" uid="uid://sknu68wk78wo" path="res://texture/haste.png" id="10_j1agy"]
 [ext_resource type="Script" uid="uid://d2h856k7shmqh" path="res://resource/debuffs/haste_effect.gd" id="11_fqd4j"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="12_3aj4c"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="12_3aj4c"]
 [ext_resource type="Script" uid="uid://d25mahyjxjgis" path="res://script/death_component.gd" id="13_6lxeq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cg28"]

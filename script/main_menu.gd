@@ -1,8 +1,6 @@
 extends Control
 
-const GAME_SCENE_PATH = "res://scene/sea.tscn"
-
-const SETTINGS_SCENE_PATH = "res://scene/settings_menu.tscn"
+const GAME_SCENE_PATH = "res://scene/level/sea.tscn"
 
 const BUTTON_HOVER_SOUND = preload("uid://kurfr6tpn2h1")
 const BUTTON_PLAY_SOUND = preload("uid://cq18lu6hjyil")

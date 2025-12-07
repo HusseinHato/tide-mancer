@@ -4,7 +4,7 @@ class_name MeteorRainSkill
 @export var meteor_scene: PackedScene
 @export var stats: Stats
 
-@export var damage_per_level: PackedFloat64Array = [16.0, 20.0, 24.0, 28.0]
+@export var damage_per_level: PackedFloat64Array = [5.0, 6.0, 7.0, 8.0]
 @export var meteors_per_burst_per_level: PackedInt32Array = [1, 2, 3, 4]
 @export var cooldown_per_level: PackedFloat64Array = [3.4, 2.6, 1.8, 1.0]
 
@@ -50,10 +50,10 @@ func _on_timer_timeout() -> void:
 	
 	var idx := level - 1
 	var count := meteors_per_burst_per_level[min(idx, meteors_per_burst_per_level.size() - 1)] + stats.get_projectile_count()
-	var dmg := damage_per_level[min(idx, damage_per_level.size() - 1)]
+	var dmg := damage_per_level[min(idx, damage_per_level.size() - 1)] + stats.get_attack()
 	
 	for i in count:
-		_spawn_meteor(dmg + stats.get_attack())
+		_spawn_meteor(dmg)
 
 func _spawn_meteor(dmg: float) -> void:
 	var meteor: Meteor = meteor_scene.instantiate()

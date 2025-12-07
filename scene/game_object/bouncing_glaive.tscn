@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://co5nl3bxffts5"]
+
+[ext_resource type="Script" uid="uid://6gb76lil6k15" path="res://script/bouncing_glaive.gd" id="1_0m5e1"]
+[ext_resource type="Texture2D" uid="uid://bigvf6n17gv1q" path="res://texture/glaive-Sheet.png" id="2_6jkh7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j5uk"]
+atlas = ExtResource("2_6jkh7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu4bc"]
+atlas = ExtResource("2_6jkh7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa26y"]
+atlas = ExtResource("2_6jkh7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhtvx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j5uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu4bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa26y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ch0a"]
+radius = 26.076809
+
+[node name="BouncingGlaive" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_0m5e1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bhtvx")
+frame_progress = 0.50065607
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1ch0a")
+
+[node name="LifetimeTimer" type="Timer" parent="."]

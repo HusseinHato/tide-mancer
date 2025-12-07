@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://doot8ojpv6tdj" path="res://script/state_machine.gd" id="5_enag7"]
 [ext_resource type="Script" uid="uid://8ih7wlplidj5" path="res://script/state_chase.gd" id="6_0akjb"]
 [ext_resource type="Script" uid="uid://dkuyuvcex0tys" path="res://script/state_shoot.gd" id="7_re6qi"]
-[ext_resource type="PackedScene" uid="uid://bbsv4yg5t3w61" path="res://scene/effect_bullet.tscn" id="8_e1hj3"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="9_uexig"]
+[ext_resource type="PackedScene" uid="uid://bbsv4yg5t3w61" path="res://scene/game_object/effect_bullet.tscn" id="8_e1hj3"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="9_uexig"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="10_1lkhv"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="11_p51ij"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="11_p51ij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ltes"]
 atlas = ExtResource("2_whq88")

@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://5voq86b0plfn" path="res://script/stats.gd" id="6_vw82v"]
 [ext_resource type="Script" uid="uid://pnkubh5n1my3" path="res://script/enemy_hitbox.gd" id="7_a6mh2"]
 [ext_resource type="Script" uid="uid://b21n7garto5js" path="res://script/drop_component.gd" id="9_e0jfi"]
-[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/soft_collision.tscn" id="10_tcqin"]
-[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/death_component.tscn" id="11_u8u56"]
+[ext_resource type="PackedScene" uid="uid://dj302ciut8ur" path="res://scene/components/soft_collision.tscn" id="10_tcqin"]
+[ext_resource type="PackedScene" uid="uid://dkybpqqnsy5j4" path="res://scene/components/death_component.tscn" id="11_u8u56"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffg0y"]
 atlas = ExtResource("1_nr4ha")

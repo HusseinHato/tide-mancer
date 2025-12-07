@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://14ey0g5wma8k"]
 
-[ext_resource type="Script" uid="uid://dvcww4ssjctu3" path="res://script/main_menu.gd" id="1_3er1b"]
-[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="2_2fwvj"]
-[ext_resource type="Texture2D" uid="uid://20x6fnv0x030" path="res://texture/sea01.png" id="2_sepwh"]
-[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="3_0iwki"]
-[ext_resource type="Texture2D" uid="uid://bnpwqowjpp2yk" path="res://texture/logo-export-export.png" id="3_sepwh"]
-[ext_resource type="PackedScene" uid="uid://vsvocmcfc87s" path="res://scene/settings_menu.tscn" id="6_14wem"]
+[ext_resource type="Script" uid="uid://dvcww4ssjctu3" path="res://script/main_menu.gd" id="1_e5dty"]
+[ext_resource type="Texture2D" uid="uid://20x6fnv0x030" path="res://texture/sea01.png" id="2_0rvh3"]
+[ext_resource type="Texture2D" uid="uid://bnpwqowjpp2yk" path="res://texture/logo-export-export.png" id="3_xk1tq"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="4_85mgp"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="5_du31s"]
+[ext_resource type="PackedScene" uid="uid://vsvocmcfc87s" path="res://scene/ui/settings_menu.tscn" id="6_v5jny"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3er1b")
+script = ExtResource("1_e5dty")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_sepwh")
+texture = ExtResource("2_0rvh3")
 stretch_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -47,33 +47,33 @@ theme_override_constants/separation = 36
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_sepwh")
+texture = ExtResource("3_xk1tq")
 stretch_mode = 3
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2fwvj")
+theme_override_fonts/font = ExtResource("4_85mgp")
 theme_override_font_sizes/font_size = 44
-theme_override_styles/normal = ExtResource("3_0iwki")
+theme_override_styles/normal = ExtResource("5_du31s")
 text = "Start Game"
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2fwvj")
+theme_override_fonts/font = ExtResource("4_85mgp")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("3_0iwki")
+theme_override_styles/normal = ExtResource("5_du31s")
 text = "Settings"
 
 [node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2fwvj")
+theme_override_fonts/font = ExtResource("4_85mgp")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = ExtResource("3_0iwki")
+theme_override_styles/normal = ExtResource("5_du31s")
 text = "Exit Game"
 
-[node name="SettingsMenu" parent="." instance=ExtResource("6_14wem")]
+[node name="SettingsMenu" parent="." instance=ExtResource("6_v5jny")]
 visible = false
 layout_mode = 1

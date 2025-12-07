@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca8b2vqc57ate"]
+
+[ext_resource type="Script" uid="uid://dhlqhqsnaad0j" path="res://script/orbital_orb.gd" id="1_ihbk8"]
+[ext_resource type="Texture2D" uid="uid://cvbritqm8d6j3" path="res://texture/golden_ball.png" id="2_j1myl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ilntv"]
+radius = 14.0
+
+[node name="OrbitalOrb" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ihbk8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j1myl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ilntv")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
