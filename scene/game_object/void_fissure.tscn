@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ds3wf6xwu60vw"]
 
 [ext_resource type="Script" uid="uid://c3o26bdhrmdiy" path="res://script/void_fissure.gd" id="1_0vegc"]
-[ext_resource type="Texture2D" uid="uid://dt62a3aroehpb" path="res://texture/void_fissure.png" id="2_34oo6"]
+[ext_resource type="Texture2D" uid="uid://dlwbqjsqud4sh" path="res://texture/void_fissure.png" id="2_34oo6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_70dkm"]
 radius = 13.0

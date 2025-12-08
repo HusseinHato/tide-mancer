@@ -14,6 +14,9 @@ class_name MeteorRainSkill
 var level: int = 0
 @onready var timer: Timer = $Timer
 
+const BONUS_MAX_LEVEL_FALL_SPEED: float = 350
+var bonus_fall_speed: float = 0.0
+
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	_update_timer()
@@ -41,7 +44,7 @@ func _update_timer() -> void:
 		return
 	
 	var idx := level - 1
-	var cd := cooldown_per_level[min(idx, cooldown_per_level.size() - 1)]
+	var cd: float = cooldown_per_level[min(idx, cooldown_per_level.size() - 1)] - (stats.get_fire_rate() / 10)
 	timer.wait_time = cd
 
 func _on_timer_timeout() -> void:
@@ -49,8 +52,8 @@ func _on_timer_timeout() -> void:
 		return
 	
 	var idx := level - 1
-	var count := meteors_per_burst_per_level[min(idx, meteors_per_burst_per_level.size() - 1)] + stats.get_projectile_count()
-	var dmg := damage_per_level[min(idx, damage_per_level.size() - 1)] + stats.get_attack()
+	var count: int = meteors_per_burst_per_level[min(idx, meteors_per_burst_per_level.size() - 1)] + stats.get_projectile_count()
+	var dmg: float = damage_per_level[min(idx, damage_per_level.size() - 1)] + stats.get_attack()
 	
 	for i in count:
 		_spawn_meteor(dmg)
@@ -58,7 +61,7 @@ func _on_timer_timeout() -> void:
 func _spawn_meteor(dmg: float) -> void:
 	var meteor: Meteor = meteor_scene.instantiate()
 	meteor.damage = dmg
-	meteor.fall_speed += (stats.get_projectile_speed() / 2)
+	meteor.fall_speed += (stats.get_projectile_speed() / 2) + bonus_fall_speed
 	meteor.size += (stats.bonus_projectile_size - 1.0)
 	meteor.piercing_count += stats.get_piercing_count()
 	meteor.crit_chance = stats.get_crit_chance()
@@ -81,3 +84,4 @@ func _evolve() -> void:
 	# Example: double meteors per burst
 	if meteors_per_burst_per_level.size() >= level:
 		meteors_per_burst_per_level[level - 1] += 3
+		bonus_fall_speed += BONUS_MAX_LEVEL_FALL_SPEED

@@ -1,0 +1,140 @@
+[gd_scene load_steps=24 format=3 uid="uid://8qs7ip8igu6"]
+
+[ext_resource type="Script" uid="uid://buxemor33r8u3" path="res://script/player.gd" id="1_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://27a1l4s1xajt" path="res://texture/shrak.png" id="2_fvtld"]
+[ext_resource type="Resource" uid="uid://cjrkfl6car2u4" path="res://resource/weapons/shotgun.tres" id="6_ihjo1"]
+[ext_resource type="PackedScene" uid="uid://dpxcbgjomudin" path="res://scene/components/status_controller.tscn" id="6_ml7e8"]
+[ext_resource type="PackedScene" uid="uid://d1cdhnvqfhpfs" path="res://scene/components/stats.tscn" id="7_ml7e8"]
+[ext_resource type="Script" uid="uid://y4lvr6bw73vi" path="res://script/weapon.gd" id="8_2fvbb"]
+[ext_resource type="AudioStream" uid="uid://cgly7qdrscpnv" path="res://sounds/normal_shot.wav" id="8_34jf3"]
+[ext_resource type="AudioStream" uid="uid://j3yxgft6wamu" path="res://sounds/crit_gun.wav" id="9_34jf3"]
+[ext_resource type="Resource" uid="uid://dach7tfpq5i00" path="res://resource/weapons/pistol.tres" id="9_ml7e8"]
+[ext_resource type="Script" uid="uid://bserhnjupv34s" path="res://script/magnet_area.gd" id="13_34jf3"]
+[ext_resource type="Script" uid="uid://bl6w3mpke3y76" path="res://script/spectral_dagger_skill.gd" id="13_p3aiu"]
+[ext_resource type="PackedScene" uid="uid://3u6rnm13osy3" path="res://scene/game_object/spectral_dagger.tscn" id="14_f5r2w"]
+[ext_resource type="PackedScene" uid="uid://dlmsxjal4hguy" path="res://scene/player/meteor_rain_skill.tscn" id="14_j4wxg"]
+[ext_resource type="PackedScene" uid="uid://bvc4cwd07totw" path="res://scene/player/meteor.tscn" id="14_u7b46"]
+[ext_resource type="Script" uid="uid://8cmd6y6bgpvf" path="res://script/bouncing_glaive_skill.gd" id="15_oen5c"]
+[ext_resource type="PackedScene" uid="uid://co5nl3bxffts5" path="res://scene/game_object/bouncing_glaive.tscn" id="16_5g408"]
+[ext_resource type="Script" uid="uid://dr1fyfooki617" path="res://script/orbital_orb_skill.gd" id="17_sc4n2"]
+[ext_resource type="PackedScene" uid="uid://ca8b2vqc57ate" path="res://scene/game_object/orbital_orb.tscn" id="18_lrcci"]
+[ext_resource type="Script" uid="uid://dcpsi2dw81jv8" path="res://script/void_fissure_skill.gd" id="19_fspl2"]
+[ext_resource type="PackedScene" uid="uid://ds3wf6xwu60vw" path="res://scene/game_object/void_fissure.tscn" id="20_eeiom"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ct4mp"]
+radius = 11.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp4bs"]
+radius = 11.0
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk1vr"]
+radius = 69.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon") groups=["player"]]
+collision_layer = 3
+collision_mask = 32
+script = ExtResource("1_hjaqi")
+weapon = NodePath("Weapon")
+pistol_weapon = ExtResource("9_ml7e8")
+shotgun_weapon = ExtResource("6_ihjo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvtld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ct4mp")
+
+[node name="StatusController" parent="." node_paths=PackedStringArray("stats", "icon_container") instance=ExtResource("6_ml7e8")]
+stats = NodePath("../Stats")
+icon_container = NodePath("../UI/HBoxContainer")
+
+[node name="Stats" parent="." instance=ExtResource("7_ml7e8")]
+base_evasion = 0.07
+base_crit_chance = 0.05
+base_crit_dmg = 1.4
+base_projectile_speed = 400.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -1.2750001
+anchor_bottom = -1.2750001
+offset_left = -19.0
+offset_top = -19.999996
+offset_right = 21.0
+offset_bottom = 20.000004
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+shape = SubResource("CapsuleShape2D_hp4bs")
+debug_color = Color(0.9522925, 5.7756904e-07, 0.5618319, 0.41960785)
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("8_2fvbb")
+weapon_data = ExtResource("9_ml7e8")
+gun_shot = ExtResource("8_34jf3")
+critical_gun_shot = ExtResource("9_34jf3")
+
+[node name="ShootTimer" type="Timer" parent="Weapon"]
+one_shot = true
+autostart = true
+
+[node name="Muzzle" type="Marker2D" parent="Weapon"]
+
+[node name="MagnetArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("13_34jf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea"]
+shape = SubResource("CircleShape2D_dk1vr")
+debug_color = Color(0, 0.6345051, 0.43192282, 0.41960785)
+
+[node name="MeteorRainSKill" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("14_j4wxg")]
+meteor_scene = ExtResource("14_u7b46")
+stats = NodePath("../Stats")
+
+[node name="SpectralDaggerSkill" type="Node2D" parent="." node_paths=PackedStringArray("stats")]
+script = ExtResource("13_p3aiu")
+dagger_scene = ExtResource("14_f5r2w")
+stats = NodePath("../Stats")
+
+[node name="Timer" type="Timer" parent="SpectralDaggerSkill"]
+
+[node name="DelayTimer" type="Timer" parent="SpectralDaggerSkill"]
+wait_time = 0.1
+autostart = true
+
+[node name="BouncingGlaiveSkill" type="Node2D" parent="." node_paths=PackedStringArray("stats")]
+script = ExtResource("15_oen5c")
+glaive_scene = ExtResource("16_5g408")
+stats = NodePath("../Stats")
+
+[node name="Timer" type="Timer" parent="BouncingGlaiveSkill"]
+
+[node name="OrbitalOrbSkill" type="Node2D" parent="." node_paths=PackedStringArray("stats")]
+script = ExtResource("17_sc4n2")
+orb_scene = ExtResource("18_lrcci")
+stats = NodePath("../Stats")
+
+[node name="Timer" type="Timer" parent="OrbitalOrbSkill"]
+
+[node name="VoidFissureSkill" type="Node2D" parent="." node_paths=PackedStringArray("stats")]
+script = ExtResource("19_fspl2")
+fissure_scene = ExtResource("20_eeiom")
+stats = NodePath("../Stats")
+
+[node name="Timer" type="Timer" parent="VoidFissureSkill"]

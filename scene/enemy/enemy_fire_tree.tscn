@@ -131,11 +131,11 @@ polygon = PackedVector2Array(-2, -4, -1, -17, -9, -30, -25, -18, -9, 1, -8, 10, 
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_cgkwf")
-base_max_health = 120.0
+base_max_health = 550.0
 base_defense = 4.0
 base_attack = 12.0
-base_move_speed = 135.0
-base_projectile_speed = 330.0
+base_move_speed = 150.0
+base_projectile_speed = 360.0
 base_fire_rate = 1.5
 metadata/_custom_type_script = "uid://5voq86b0plfn"
 

@@ -12,21 +12,29 @@ class_name BoungGlaiveSkill
 var level: int = 0
 @onready var timer: Timer = $Timer
 
+var bonus_bounce: int = 0
+const BONUS_EVOLVED_BOUNCE: int = 3
+var bonus_proj_count: int = 0
+const BONUS_EVOLVED_PROJ_COUNT: int = 2
+
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	#set_level(4)
 
 func set_level(new_level: int) -> void:
 	level = clamp(new_level, 0, max_level)
+	if level >= max_level:
+		timer.stop()
+		_evolve()
+	
 	if level > 0:
 		var idx = min(level - 1, cooldown_per_level.size() - 1)
-		timer.wait_time = cooldown_per_level[idx]
+		timer.wait_time = cooldown_per_level[idx] - (stats.get_fire_rate() / 10)
 		if timer.is_stopped(): timer.start()
 
 func _on_timer_timeout() -> void:
 	if level <= 0: return
 	
-	var count = 1 + stats.get_projectile_count() # Multi-cast
+	var count = 1 + stats.get_projectile_count() + bonus_proj_count # Multi-cast
 	var dmg = damage_per_level[min(level - 1, damage_per_level.size() - 1)]
 	
 	for i in range(count):
@@ -37,7 +45,7 @@ func _spawn_glaive(dmg: float) -> void:
 	if not glaive_scene: return
 	var glaive = glaive_scene.instantiate() as BouncingGlaive
 	glaive.damage = dmg
-	glaive.bounces = 2 + stats.get_piercing_count() + (level - 1)
+	glaive.bounces = 2 + stats.get_piercing_count() + (level - 1) + bonus_bounce
 	glaive.speed = stats.get_projectile_speed()
 	glaive.proj_scale = stats.get_projectile_size()
 	
@@ -60,3 +68,7 @@ func _spawn_glaive(dmg: float) -> void:
 	glaive.direction = (target_pos - global_position).normalized()
 	
 	get_tree().current_scene.add_child(glaive)
+
+func _evolve() -> void:
+	bonus_bounce += BONUS_EVOLVED_BOUNCE
+	bonus_proj_count += BONUS_EVOLVED_PROJ_COUNT

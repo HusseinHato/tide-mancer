@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_BouncingGlaiveSkill" load_steps=3 format=3 uid="uid://cni88dv0m52gj"]
+
+[ext_resource type="Script" uid="uid://c72347ctt12qm" path="res://resource/upgrades/upgrade_bouncing_glaive.gd" id="1_6wahh"]
+[ext_resource type="Texture2D" uid="uid://j51qekdvxygh" path="res://texture/glaive.png" id="1_saliv"]
+
+[resource]
+script = ExtResource("1_6wahh")
+skill_node_path = NodePath("BouncingGlaiveSkill")
+id = &"glaive_upgrade"
+name = "Bouncy Glaive"
+description = "Summon A Bouncing Glaive that Bounce when hit enemy."
+icon = ExtResource("1_saliv")
+max_level = 4
+metadata/_custom_type_script = "uid://c72347ctt12qm"

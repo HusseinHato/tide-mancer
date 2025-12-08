@@ -13,7 +13,6 @@ var level: int = 0
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	timer.wait_time = cooldown
-	set_level(1)
 
 func set_level(new_level: int) -> void:
 	level = clamp(new_level, 0, max_level)
@@ -29,7 +28,7 @@ func _on_timer_timeout() -> void:
 	for i in range(count):
 		var fissure = fissure_scene.instantiate()
 		fissure.damage = dmg + (stats.get_attack() * 0.5) # 50% attack scaling per tick
-		fissure.scale = Vector2.ONE * stats.get_projectile_size()
+		fissure.scale = Vector2(1.4, 1.4) * stats.get_projectile_size()
 		
 		# Spawn under random enemies
 		var enemies = get_tree().get_nodes_in_group("enemy")

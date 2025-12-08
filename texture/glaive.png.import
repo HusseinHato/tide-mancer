@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlwbqjsqud4sh"
-path="res://.godot/imported/void_fissure.png-670082f5316f1443872760e10d27284a.ctex"
+uid="uid://j51qekdvxygh"
+path="res://.godot/imported/glaive.png-c2dd95d0a2545342919a227412a381dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://texture/void_fissure.png"
-dest_files=["res://.godot/imported/void_fissure.png-670082f5316f1443872760e10d27284a.ctex"]
+source_file="res://texture/glaive.png"
+dest_files=["res://.godot/imported/glaive.png-c2dd95d0a2545342919a227412a381dd.ctex"]
 
 [params]
 

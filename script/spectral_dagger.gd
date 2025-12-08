@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 			var direction = (target.global_position - global_position).normalized()
 			# Smooth turn
 			var current_dir = Vector2.RIGHT.rotated(rotation)
-			var new_dir = current_dir.lerp(direction, 20 * delta).normalized()
+			var new_dir = current_dir.lerp(direction, 10 * delta).normalized()
 			rotation = new_dir.angle()
 			position += new_dir * move_speed * delta
 		else:

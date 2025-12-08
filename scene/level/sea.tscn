@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://bhlp3r8w6ch5f"]
+[gd_scene load_steps=61 format=4 uid="uid://bhlp3r8w6ch5f"]
 
 [ext_resource type="Script" uid="uid://da3lhmji2gndk" path="res://script/sea_stage.gd" id="1_ybb1o"]
 [ext_resource type="AudioStream" uid="uid://buykbwj2mc4j0" path="res://sounds/TideMancerMainTHeme.mp3" id="2_oemof"]
@@ -36,8 +36,11 @@
 [ext_resource type="Resource" uid="uid://b3ikt0hkakkeb" path="res://resource/upgrades/evasion_upgrade.tres" id="34_1ds37"]
 [ext_resource type="Resource" uid="uid://b5y8o824cen8l" path="res://resource/upgrades/defense_upgrade.tres" id="35_ap26e"]
 [ext_resource type="PackedScene" uid="uid://dcm5ra6aatm6" path="res://scene/ui/upgrade_badge.tscn" id="36_nuao8"]
+[ext_resource type="Resource" uid="uid://cni88dv0m52gj" path="res://resource/upgrades/bouncing_glaive.tres" id="36_oemof"]
 [ext_resource type="PackedScene" uid="uid://dhymhrpb7is6x" path="res://scene/ui/upgrade_ui.tscn" id="37_72d3e"]
+[ext_resource type="Resource" uid="uid://8jydolrnxcco" path="res://resource/upgrades/golden_ball.tres" id="37_jp4co"]
 [ext_resource type="AudioStream" uid="uid://bxx8tuund2moo" path="res://sounds/level_up.wav" id="38_0n21l"]
+[ext_resource type="Resource" uid="uid://cn3vqn7q3bpc4" path="res://resource/upgrades/spectral_dagger.tres" id="38_sbn56"]
 [ext_resource type="PackedScene" uid="uid://dxkvj0ltayu8i" path="res://scene/world/enemy_spawner.tscn" id="39_kdrfo"]
 [ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="40_38442"]
 [ext_resource type="Resource" uid="uid://dpgiqquw03n12" path="res://resource/enemies/green_sea_snake.tres" id="41_6fw0j"]
@@ -142,9 +145,9 @@ texture_progress = ExtResource("11_hcb3o")
 [node name="HealthLabel" type="Label" parent="CanvasLayer/HealthRelated"]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 36.0
+offset_top = 39.0
 offset_right = 85.0
-offset_bottom = 59.0
+offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("12_0tnon")
 text = "HP:"
 
@@ -185,14 +188,10 @@ texture_progress = ExtResource("15_85jx4")
 
 [node name="NumericalIndicator" type="Label" parent="CanvasLayer/ExperienceRelated"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -52.0
-offset_right = 100.0
-offset_bottom = -29.0
-grow_vertical = 0
+offset_left = 37.0
+offset_top = 80.0
+offset_right = 117.0
+offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("12_0tnon")
 text = "Lv. 1"
 
@@ -263,8 +262,25 @@ theme_override_fonts/font = ExtResource("20_3uo7i")
 theme_override_font_sizes/font_size = 24
 text = "Press Q to Switch Weapon"
 
+[node name="WhirlpoolAbout" type="Label" parent="CanvasLayer/Guide"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -232.0
+offset_right = -12.0
+offset_bottom = -209.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("20_3uo7i")
+theme_override_font_sizes/font_size = 21
+text = "Whirlpools strengthen you & weakens enemies"
+
 [node name="Timer" type="Timer" parent="CanvasLayer/Guide"]
-wait_time = 7.0
+wait_time = 11.0
 one_shot = true
 autostart = true
 
@@ -296,14 +312,13 @@ script = ExtResource("21_0y62f")
 
 [node name="UpgradeManager" type="Node" parent="." node_paths=PackedStringArray("upgrade_ui", "player", "collected_upgrades_container")]
 script = ExtResource("22_lxxyn")
-available_upgrades = Array[ExtResource("23_qdy18")]([ExtResource("24_id765"), ExtResource("25_8ddhw"), ExtResource("26_ownvv"), ExtResource("27_381tg"), ExtResource("28_ddxgm"), ExtResource("29_ywj4x"), ExtResource("30_52b4a"), ExtResource("31_wnosg"), ExtResource("32_7xmek"), ExtResource("33_acpe8"), ExtResource("34_1ds37"), ExtResource("35_ap26e")])
+available_upgrades = Array[ExtResource("23_qdy18")]([ExtResource("24_id765"), ExtResource("25_8ddhw"), ExtResource("26_ownvv"), ExtResource("27_381tg"), ExtResource("28_ddxgm"), ExtResource("29_ywj4x"), ExtResource("30_52b4a"), ExtResource("31_wnosg"), ExtResource("32_7xmek"), ExtResource("33_acpe8"), ExtResource("34_1ds37"), ExtResource("35_ap26e"), ExtResource("36_oemof"), ExtResource("37_jp4co"), ExtResource("38_sbn56")])
 upgrade_ui = NodePath("../UpgradeUI")
 player = NodePath("../Entities/Player")
 collected_upgrades_container = NodePath("../CanvasLayer/UpgradesHud/HBoxContainer")
 upgrade_badge_scene = ExtResource("36_nuao8")
 
 [node name="UpgradeUI" parent="." instance=ExtResource("37_72d3e")]
-visible = false
 level_up_sound = ExtResource("38_0n21l")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("39_kdrfo")]
@@ -331,6 +346,7 @@ mouse_filter = 2
 
 [node name="StartLabel" type="Label" parent="LabelStartGame/Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -348,8 +364,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IrisTransition" parent="." instance=ExtResource("52_ccdht")]
-visible = false
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("player") instance=ExtResource("53_ux2x4")]
-visible = false
 player = NodePath("../Entities/Player")

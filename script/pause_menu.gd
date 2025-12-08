@@ -18,7 +18,7 @@ extends CanvasLayer
 
 @export var player: Player
 
-const MAIN_MENU_PATH = "res://scene/main_menu.tscn"
+const MAIN_MENU_PATH = "res://scene/ui/main_menu.tscn"
 
 func _ready() -> void:
 	visible = false

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_GoldenBall" load_steps=3 format=3 uid="uid://8jydolrnxcco"]
+
+[ext_resource type="Script" uid="uid://cy6ajjvv1wjfv" path="res://resource/upgrades/upgrade_golden_ball.gd" id="1_cmh2b"]
+[ext_resource type="Texture2D" uid="uid://cvbritqm8d6j3" path="res://texture/golden_ball.png" id="1_kwcrl"]
+
+[resource]
+script = ExtResource("1_cmh2b")
+skill_node_path = NodePath("OrbitalOrbSkill")
+id = &"orbital_orb"
+name = "Golden Balls"
+description = "The legendary golden balls orbiting around you. You Are The Chosen One!"
+icon = ExtResource("1_kwcrl")
+max_level = 4
+metadata/_custom_type_script = "uid://cy6ajjvv1wjfv"

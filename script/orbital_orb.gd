@@ -8,6 +8,7 @@ var current_angle: float = 0.0
 var orbit_radius: float = 100.0
 var rotation_speed: float = 3.0
 var duration: float = 5.0
+var evolved: bool = false
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
 
@@ -15,9 +16,10 @@ func _ready() -> void:
 	current_angle = start_angle
 	area_entered.connect(_on_area_entered)
 	
-	lifetime_timer.start(duration)
-	await lifetime_timer.timeout
-	queue_free()
+	if !evolved:
+		lifetime_timer.start(duration)
+		await lifetime_timer.timeout
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(center_object):

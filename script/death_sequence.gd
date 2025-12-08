@@ -39,4 +39,4 @@ func start_death_sequence() -> void:
 func _on_continue_pressed():
 	get_tree().paused = false
 	visible = false
-	get_tree().change_scene_to_file("res://scene/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scene/ui/main_menu.tscn")

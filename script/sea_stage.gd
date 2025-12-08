@@ -29,7 +29,11 @@ func _ready() -> void:
 	start_label.text = "GO!"
 	
 	# 4. Hide label after a moment
-	await get_tree().create_timer(0.5, false).timeout
+	await get_tree().create_timer(1, false).timeout
+	
+	start_label.text = "Live As Long As You Can!"
+	await get_tree().create_timer(2, false).timeout
+	
 	start_label.visible = false
 	
 	get_tree().create_timer(0.1).timeout.connect(_on_game_start)

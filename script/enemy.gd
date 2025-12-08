@@ -28,6 +28,9 @@ func _ready() -> void:
 
 func init_with_time(elapsed: float) -> void:
 	var minutes: int = floor(elapsed / 60)
+	if minutes >= 9:
+		minutes *= 2
+	
 	stats.bonus_max_health += hp_per_minute * minutes
 	stats.health = stats.get_max_health()
 	stats.bonus_attack = attack_per_minute * minutes

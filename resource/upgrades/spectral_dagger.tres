@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_SpectralDagger" load_steps=3 format=3 uid="uid://cn3vqn7q3bpc4"]
+
+[ext_resource type="Script" uid="uid://bb4djow85lvc" path="res://resource/upgrades/upgrade_spectral_dagger.gd" id="1_4r2su"]
+[ext_resource type="Texture2D" uid="uid://cereswnf8gxno" path="res://texture/spectral_dagger.png" id="1_mef87"]
+
+[resource]
+script = ExtResource("1_4r2su")
+skill_node_path = NodePath("SpectralDaggerSkill")
+id = &"spectral_dagger"
+name = "Spectral Dagger"
+description = "A Homing Missile Dagger that target nearest Enemy."
+icon = ExtResource("1_mef87")
+max_level = 4
+metadata/_custom_type_script = "uid://bb4djow85lvc"
