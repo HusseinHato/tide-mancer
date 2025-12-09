@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://db23xusumj27x"]
 
-[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="1_i5fj8"]
-[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/floating_text.gd" id="2_somo3"]
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://theme/Jersey10-Regular.ttf" id="1_i5fj8"]
+[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/ui/floating_text.gd" id="2_somo3"]
 
 [sub_resource type="Theme" id="Theme_i5fj8"]
 

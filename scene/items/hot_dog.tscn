@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://3viny15nvpp3"]
 
 [ext_resource type="Texture2D" uid="uid://c21p2sew4inkq" path="res://texture/hot_dog.png" id="1_gq8au"]
-[ext_resource type="Script" uid="uid://dst7wlrpqywr6" path="res://script/hot_dog.gd" id="1_kdsl6"]
+[ext_resource type="Script" uid="uid://dst7wlrpqywr6" path="res://script/world_objects/items/hot_dog.gd" id="1_kdsl6"]
 [ext_resource type="AudioStream" uid="uid://buj6pltc68eat" path="res://sounds/pickUpHotdog.wav" id="2_8cv35"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdsl6"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbsv4yg5t3w61"]
 
-[ext_resource type="Script" uid="uid://blw1w73nk2jew" path="res://script/effect_bullet.gd" id="1_3okv5"]
+[ext_resource type="Script" uid="uid://blw1w73nk2jew" path="res://script/world_objects/projectile/effect_bullet.gd" id="1_3okv5"]
 [ext_resource type="Resource" uid="uid://bm0g75ucsfw6t" path="res://resource/debuffs/poison.tres" id="2_u8kn0"]
 [ext_resource type="Texture2D" uid="uid://mgt7olsagln8" path="res://texture/enemy_bullet_poison.png" id="3_7og7c"]
 

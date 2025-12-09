@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ddh5p6un35rv8"]
 
 [ext_resource type="Texture2D" uid="uid://djoyqsp1sf4r3" path="res://texture/magnet-Sheet.png" id="1_4ayfa"]
-[ext_resource type="Script" uid="uid://condj4igj4xqc" path="res://script/magnet.gd" id="1_mutbh"]
+[ext_resource type="Script" uid="uid://condj4igj4xqc" path="res://script/world_objects/items/magnet.gd" id="1_mutbh"]
 [ext_resource type="AudioStream" uid="uid://c61l7npscewch" path="res://sounds/magnet.wav" id="2_m7m1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mutbh"]

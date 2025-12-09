@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccy03g0aptbgt"]
 
-[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="1_x1vsp"]
-[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/floating_text.gd" id="2_ipxgw"]
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://theme/Jersey10-Regular.ttf" id="1_x1vsp"]
+[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/ui/floating_text.gd" id="2_ipxgw"]
 
 [node name="CriticalDamageFloatingText" type="Label"]
 anchors_preset = 15

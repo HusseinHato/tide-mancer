@@ -2,7 +2,8 @@ extends Node
 class_name Stats
 signal health_depleted
 signal health_changed(current_health: float, max_health: float)
-signal move_speed_modified()
+signal stat_changed_float(stat_name: String, new_value: float)
+signal stat_changed_int(stat_name: String, new_value: bool)
 
 const FLOATING_TEXT_SCENE: PackedScene = preload("uid://db23xusumj27x")
 const CRITICAL_FLOATING_TEXT_SCENE: PackedScene = preload("uid://ccy03g0aptbgt")
@@ -24,6 +25,7 @@ const EVADED_SFX: AudioStream = preload("uid://4u1hod0vbkl")
 @export var base_crit_dmg: float = 1.0
 @export var base_projectile_speed: float = 300.0
 @export var base_fire_rate: float = 1
+@export var base_luck: float = 0.0
 
 #Runtime HP
 var health: float = 0.0
@@ -41,6 +43,7 @@ var bonus_fire_rate: float = 0.0
 var bonus_projectile_count: int = 0
 var bonus_piercing_count: int = 0
 var bonus_projectile_size: float = 1.0
+var bonus_luck: float = 0.0
 
 # Multipliers (usually from temporary effects)
 var attack_multiplier: float = 1.0
@@ -85,6 +88,9 @@ func get_piercing_count() -> int:
 
 func get_projectile_size() -> float:
 	return max(1.0, bonus_projectile_size)
+
+func get_luck() -> float:
+	return base_luck + bonus_luck
 
 func _ready() -> void:
 	health = get_max_health()

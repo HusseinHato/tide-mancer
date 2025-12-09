@@ -1,8 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://becwtdpvqaxov"]
+[gd_scene load_steps=5 format=3 uid="uid://rl68lsqs8bmg"]
 
-[ext_resource type="Script" uid="uid://l0tgt4kegnko" path="res://script/game_over.gd" id="1_mxr41"]
-[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="2_bc2bx"]
-[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="2_mxr41"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://theme/PressStart2P-Regular.ttf" id="1_t72hy"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://theme/button_theme.tres" id="2_yp7xi"]
+
+[sub_resource type="GDScript" id="GDScript_0d30n"]
+script/source = "extends CanvasLayer
+class_name GameOver
+
+@onready var title_label: Label = %TitleLabel
+@onready var restart_button: Button = %RestartButton
+@onready var main_menu_button: Button = %MainMenuButton
+@onready var background: ColorRect = %Background
+@onready var label: Label = %Stats
+@export var timer_related: Control
+
+const MAIN_MENU_PATH = \"res://scene/main_menu.tscn\"
+
+func _ready() -> void:
+	visible = false
+	
+	SoundManager.stop_music(2.0)
+	
+	restart_button.pressed.connect(_on_restart_pressed)
+	main_menu_button.pressed.connect(_on_main_menu_pressed)
+	
+func set_game_over(is_win: bool) -> void:
+	visible = true
+	
+	if is_win:
+		background.color = Color.LIGHT_GREEN
+		title_label.text = \"YOU WIN!\"
+		title_label.modulate = Color.GREEN
+		restart_button.visible = false
+	else:
+		background.color = Color(0.698, 0.133, 0.133, 0.533)
+		title_label.text = \"GAME OVER\"
+		title_label.modulate = Color.RED
+	
+	main_menu_button.visible = true
+	
+	var minutes_and_second: Array[int] = timer_related.get_time_elapsed()
+	var minute = minutes_and_second[0]
+	var second = minutes_and_second[1]
+	
+	label.text = \"You Survived for : %d Minutes %d Seconds \" % [minute, second]
+	
+	#get_tree().paused = true
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_main_menu_pressed() -> void:
+	SceneTransition.change_scene(MAIN_MENU_PATH)
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooyig"]
 content_margin_left = 4.0
@@ -12,7 +63,7 @@ content_margin_bottom = 8.0
 bg_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
 
 [node name="GameOver" type="CanvasLayer"]
-script = ExtResource("1_mxr41")
+script = SubResource("GDScript_0d30n")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -54,7 +105,7 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_fonts/font = ExtResource("1_t72hy")
 theme_override_font_sizes/font_size = 30
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -63,21 +114,21 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_fonts/font = ExtResource("1_t72hy")
 text = "You Survived For : 11 Minutes 20 Seconds"
 
 [node name="RestartButton" type="Button" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 0
-theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_fonts/font = ExtResource("1_t72hy")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = ExtResource("2_mxr41")
+theme_override_styles/normal = ExtResource("2_yp7xi")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_bc2bx")
+theme_override_fonts/font = ExtResource("1_t72hy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ooyig")
 text = "Main Menu"

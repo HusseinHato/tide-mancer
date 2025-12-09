@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://co5nl3bxffts5"]
 
-[ext_resource type="Script" uid="uid://6gb76lil6k15" path="res://script/bouncing_glaive.gd" id="1_0m5e1"]
+[ext_resource type="Script" uid="uid://6gb76lil6k15" path="res://script/world_objects/projectile/bouncing_glaive.gd" id="1_0m5e1"]
 [ext_resource type="Texture2D" uid="uid://bigvf6n17gv1q" path="res://texture/glaive-Sheet.png" id="2_6jkh7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4j5uk"]

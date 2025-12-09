@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3u6rnm13osy3"]
 
-[ext_resource type="Script" uid="uid://b0g76c5cgfcwr" path="res://script/spectral_dagger.gd" id="1_sr8gh"]
+[ext_resource type="Script" uid="uid://b0g76c5cgfcwr" path="res://script/world_objects/projectile/spectral_dagger.gd" id="1_sr8gh"]
 [ext_resource type="Texture2D" uid="uid://cereswnf8gxno" path="res://texture/spectral_dagger.png" id="2_du2uu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sr8gh"]

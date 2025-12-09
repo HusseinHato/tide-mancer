@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvubwdvb1xn5w"]
 
-[ext_resource type="Script" uid="uid://b2v148pwls6ur" path="res://script/death_sequence.gd" id="1_b80o6"]
+[ext_resource type="Script" uid="uid://b2v148pwls6ur" path="res://script/ui/death_sequence.gd" id="1_b80o6"]
 [ext_resource type="Texture2D" uid="uid://2knfhgevy57h" path="res://texture/shrak_dead.png" id="1_xgiwt"]
 [ext_resource type="Shader" uid="uid://cxh841iij3b8m" path="res://shader/circle_shader.gdshader" id="2_kntby"]
-[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="4_vudit"]
-[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="5_rya6c"]
-[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="6_opf3o"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://theme/PressStart2P-Regular.ttf" id="4_vudit"]
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://theme/Jersey10-Regular.ttf" id="5_rya6c"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://theme/button_theme.tres" id="6_opf3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cslii"]
 shader = ExtResource("2_kntby")

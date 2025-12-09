@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3 uid="uid://bignitp16tca"]
 
-[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_config.gd" id="1_3t2w2"]
+[ext_resource type="Script" uid="uid://c7xnvkxd2yajl" path="res://script/enemy_related/enemy_config.gd" id="1_3t2w2"]
 [ext_resource type="PackedScene" uid="uid://wgg6d1nr05b6" path="res://scene/enemy/enemy_buffer.tscn" id="1_afgw8"]
 
 [resource]

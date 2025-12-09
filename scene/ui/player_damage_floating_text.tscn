@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dinnlfbshpkyp"]
 
-[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://asset/Jersey10-Regular.ttf" id="1_3w1ym"]
-[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/floating_text.gd" id="2_ileup"]
+[ext_resource type="FontFile" uid="uid://cwyoieomu6m2j" path="res://theme/Jersey10-Regular.ttf" id="1_3w1ym"]
+[ext_resource type="Script" uid="uid://bcunt46pfx04" path="res://script/ui/floating_text.gd" id="2_ileup"]
 
 [node name="PlayerDamageFloatingText" type="Label"]
 anchors_preset = 15

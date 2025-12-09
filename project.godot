@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Events="*res://script/events.gd"
-SoundManager="*res://script/sound_manager.gd"
+Events="*res://script/core/events.gd"
+SoundManager="*res://script/core/sound_manager.gd"
 SceneTransition="*res://scene/ui/scene_transition.tscn"
+Enums="*res://script/core/enums.gd"
 
 [display]
 

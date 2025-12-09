@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cijxs03ldvect"]
 
-[ext_resource type="Script" uid="uid://dpu8ext4a6x0a" path="res://script/bullet.gd" id="1_xw300"]
+[ext_resource type="Script" uid="uid://dpu8ext4a6x0a" path="res://script/world_objects/projectile/bullet.gd" id="1_xw300"]
 [ext_resource type="Texture2D" uid="uid://bwgrhp1f0i15o" path="res://texture/bullet_shrak.png" id="2_xw300"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bt1p"]

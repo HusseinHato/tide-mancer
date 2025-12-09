@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://rcp074axgpew"]
 
-[ext_resource type="Script" uid="uid://5jkka65h0a0a" path="res://script/upgrade_option.gd" id="1_ww27w"]
+[ext_resource type="Script" uid="uid://5jkka65h0a0a" path="res://script/ui/upgrade_option.gd" id="1_ww27w"]
 [ext_resource type="Texture2D" uid="uid://dlc1tvh8vkn1" path="res://texture/attack_up.png" id="2_a3cy1"]
-[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://asset/theme.tres" id="3_ieytw"]
+[ext_resource type="Theme" uid="uid://cwahlksu8aj87" path="res://theme/theme.tres" id="3_ieytw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xj1yb"]
 bg_color = Color(0.2520276, 0.25202766, 0.25202763, 1)

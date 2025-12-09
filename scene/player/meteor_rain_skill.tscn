@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlmsxjal4hguy"]
 
-[ext_resource type="Script" uid="uid://clcjs84jo0lfr" path="res://script/meteor_rain_skill.gd" id="1_yb434"]
+[ext_resource type="Script" uid="uid://clcjs84jo0lfr" path="res://script/upgrades/meta_skills/meteor_rain_skill.gd" id="1_yb434"]
 
 [node name="MeteorRainSKill" type="Node2D"]
 script = ExtResource("1_yb434")

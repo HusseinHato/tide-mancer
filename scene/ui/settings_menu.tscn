@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://vsvocmcfc87s"]
 
-[ext_resource type="Script" uid="uid://d3ykan011e5pl" path="res://script/settings_menu.gd" id="1_vkohq"]
-[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://asset/PressStart2P-Regular.ttf" id="2_iy2dp"]
-[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://asset/button_theme.tres" id="3_sse7s"]
+[ext_resource type="Script" uid="uid://d3ykan011e5pl" path="res://script/ui/settings_menu.gd" id="1_vkohq"]
+[ext_resource type="FontFile" uid="uid://cye158fsenf7x" path="res://theme/PressStart2P-Regular.ttf" id="2_iy2dp"]
+[ext_resource type="StyleBox" uid="uid://cr731ouir8npp" path="res://theme/button_theme.tres" id="3_sse7s"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
